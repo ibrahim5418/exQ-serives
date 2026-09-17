@@ -1,0 +1,202 @@
+.form__grid {
+  display: grid;
+  gap: 1.35rem 1.25rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.field label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 640;
+  font-size: 0.96rem;
+}
+
+.field__req {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+  background: #fff;
+  border: var(--stroke) solid #8c9491;
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 9rem;
+}
+
+.field ::placeholder {
+  color: #6b7370;
+  opacity: 1;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--ink-2);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(4, 105, 107, 0.35);
+}
+
+.field [aria-invalid='true'] {
+  border-color: var(--error);
+}
+
+.field [aria-invalid='true']:focus-visible {
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.25);
+}
+
+.field__select {
+  position: relative;
+}
+
+.field__select select {
+  appearance: none;
+  padding-right: 2.75rem;
+  cursor: pointer;
+}
+
+.field__select::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: -0.4rem;
+  border-right: var(--stroke) solid var(--ink);
+  border-bottom: var(--stroke) solid var(--ink);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.field__error {
+  display: flex;
+  gap: 0.45rem;
+  color: var(--error);
+  font-size: 0.9rem;
+  font-weight: 540;
+  line-height: 1.4;
+}
+
+.field__error::before {
+  content: '';
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.42em;
+  background: var(--error);
+  border-radius: 1px;
+}
+
+.field--trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form__alert {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  background: #fbeceb;
+  border: 1px solid #e3b4b0;
+  border-radius: var(--radius);
+  color: #5c1511;
+}
+
+.form__alert a {
+  font-weight: 620;
+}
+
+.form__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.form__privacy {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  max-width: 34ch;
+}
+
+@media (min-width: 40em) {
+  .form__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field--full {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Sent */
+.form-done {
+  padding: 2rem 1.75rem;
+  background: var(--sheet);
+  border: var(--stroke) solid var(--ink);
+  border-radius: 2px;
+}
+
+.form-done:focus {
+  outline: none;
+}
+
+.form-done__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  background: var(--teal);
+  color: var(--tape-ink);
+  border-radius: 2px;
+}
+
+.form-done__title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-done p {
+  color: var(--ink-2);
+  max-width: 48ch;
+}
+
+.form-done__again {
+  margin-top: 1.5rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: var(--stroke) solid currentColor;
+  font-weight: 640;
+}

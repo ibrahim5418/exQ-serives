@@ -1,0 +1,101 @@
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.section--tight {
+  padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+/* The cabinet: dark bands for hero, CTA and footer. */
+.band-rack {
+  background: var(--rack);
+  color: var(--rack-ink);
+}
+
+.band-rack ::selection {
+  background: var(--teal);
+  color: var(--tape-ink);
+}
+
+/* Sheet: the lighter "paper" surface used for dense reference content. */
+.sheet {
+  background: var(--sheet);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 44ch;
+}
+
+.band-rack .lead {
+  color: var(--rack-ink-2);
+}
+
+.prose {
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.prose p {
+  color: var(--ink-2);
+}
+
+.prose strong {
+  color: var(--ink);
+}
+
+/* A rule drawn with the site's one stroke weight. */
+.rule {
+  border: 0;
+  border-top: var(--stroke) solid var(--rule);
+  margin: 0;
+}
+
+.section-head {
+  display: grid;
+  gap: var(--s-4);
+  margin-bottom: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  max-width: 48rem;
+}
+
+.section-head p {
+  color: var(--ink-2);
+  max-width: 56ch;
+}
+
+.band-rack .section-head p {
+  color: var(--rack-ink-2);
+}
+
+.split {
+  display: grid;
+  gap: var(--s-6) clamp(2rem, 1rem + 4vw, 5rem);
+}
+
+@media (min-width: 60em) {
+  .split {
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+  }
+
+  .split--even {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split--wide-left {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+.stack > * + * {
+  margin-top: var(--s-5);
+}

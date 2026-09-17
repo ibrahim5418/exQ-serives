@@ -1,0 +1,82 @@
+.page-header {
+  position: relative;
+  padding-block: clamp(2.5rem, 1.8rem + 3vw, 4.5rem) clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+.page-header__inner {
+  display: grid;
+  gap: 2.5rem 4rem;
+  align-items: end;
+}
+
+.page-header__inner > * {
+  min-width: 0;
+}
+
+.page-header__main {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.page-header__title {
+  max-width: 17ch;
+}
+
+.page-header__lead {
+  max-width: 50ch;
+}
+
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.crumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  font-size: 0.86rem;
+  color: var(--rack-ink-3);
+}
+
+.crumbs li + li::before {
+  content: '/';
+  margin-inline: 0.55rem;
+  color: #5a6164;
+}
+
+.crumbs a {
+  color: var(--rack-ink-2);
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  color: var(--rack-ink);
+  text-decoration: underline;
+}
+
+.crumbs [aria-current] {
+  color: var(--rack-ink-2);
+}
+
+/* Service colour run along the bottom edge of the header */
+.page-header__run {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.55rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 45%, rgba(0, 0, 0, 0.3)),
+    var(--header-cable);
+}
+
+@media (min-width: 60em) {
+  .page-header--aside .page-header__inner {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}

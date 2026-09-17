@@ -1,0 +1,257 @@
+/* One vertical route line, in the service's cable colour, ties the page together:
+   problem → answer → included → situations → benefits → approach → questions. */
+.route {
+  position: relative;
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0 clamp(3.5rem, 2.5rem + 3vw, 6rem) 2rem;
+}
+
+.route::before {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  top: 0;
+  bottom: clamp(3.5rem, 2.5rem + 3vw, 6rem);
+  width: var(--stroke);
+  background: var(--run);
+}
+
+.route__stop {
+  position: relative;
+  padding-bottom: clamp(3rem, 2.2rem + 3vw, 5rem);
+}
+
+.route__stop--last {
+  padding-bottom: 0;
+}
+
+.route__title {
+  position: relative;
+  max-width: 24ch;
+  margin-bottom: 1.5rem;
+}
+
+/* Termination point on the line for every stop */
+.route__title::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.35em;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: -0.08rem;
+  background: var(--ground);
+  border: var(--stroke) solid var(--ink);
+  border-radius: 1px;
+  box-shadow: inset 0 0 0 0.2rem var(--ground), inset 0 0 0 1rem var(--run);
+}
+
+.route__two {
+  display: grid;
+  gap: 2rem 4rem;
+}
+
+.route__prose {
+  max-width: 62ch;
+}
+
+.signs {
+  padding: 1.25rem 1.4rem 1.4rem;
+  background: var(--sheet);
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 1px var(--sheet-line);
+  align-self: start;
+}
+
+.signs__title {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.signs__list {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.signs__list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+.signs__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--run);
+  border-radius: 1px;
+}
+
+/* What's included: a dense reference grid, text only */
+.included {
+  list-style: none;
+  display: grid;
+  gap: 0 2.5rem;
+  border-top: var(--stroke) solid var(--rule);
+}
+
+.included__item {
+  padding: 1.1rem 0 1.2rem;
+  border-bottom: 1px solid var(--sheet-line);
+}
+
+.included__item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+
+.included__item p {
+  color: var(--ink-2);
+  font-size: 0.98rem;
+}
+
+/* Situations: larger sentences */
+.needs {
+  list-style: none;
+  display: grid;
+  gap: 1.1rem 3rem;
+}
+
+.needs li {
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  font-weight: 560;
+  line-height: 1.4;
+  max-width: 34ch;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--sheet-line);
+}
+
+.outcome {
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
+  font-weight: 680;
+  font-stretch: 94%;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  max-width: 30ch;
+  margin-bottom: 2rem;
+}
+
+.benefits {
+  margin: 0;
+  display: grid;
+  gap: 1.5rem 3rem;
+}
+
+.benefits__item {
+  padding-top: 0.9rem;
+  border-top: var(--stroke) solid var(--rule);
+}
+
+.benefits__item dt {
+  font-weight: 700;
+  font-stretch: 94%;
+  font-size: 1.08rem;
+  margin-bottom: 0.3rem;
+}
+
+.benefits__item dd {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+.route__run {
+  margin-top: 0.5rem;
+}
+
+.route__faq {
+  max-width: 52rem;
+}
+
+@media (min-width: 48em) {
+  .route {
+    padding-left: 3.5rem;
+  }
+
+  .route::before {
+    left: 0.55rem;
+  }
+
+  .route__title::before {
+    left: -3.5rem;
+  }
+
+  .included {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .needs,
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .route__two {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+
+  .included {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .benefits {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Related services */
+.related {
+  border-top: 1px solid var(--sheet-line);
+  padding-block: 2.5rem;
+}
+
+.related__inner {
+  display: grid;
+  gap: 1.5rem 3rem;
+  align-items: start;
+}
+
+.related__title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.related__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.75rem;
+}
+
+.related__list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink-2);
+}
+
+.related__list a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+@media (min-width: 60em) {
+  .related__inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .related__list {
+    padding-top: 0.3rem;
+  }
+}

@@ -1,0 +1,233 @@
+.rack {
+  --unit-h: 3.1rem;
+  --rail: 1.1rem;
+  --rack-w: 23rem;
+}
+
+.rack__units {
+  list-style: none;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.rack__row {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.rack__unit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: calc(var(--u) * var(--unit-h));
+  padding: 0 0.8rem 0 0.7rem;
+  background: #272b2f;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid #0a0b0c;
+  border-radius: 1px;
+}
+
+.rack__u {
+  font-size: 0.66rem;
+  font-weight: 600;
+  font-stretch: 78%;
+  color: var(--rack-ink-3);
+  width: 1.6rem;
+  flex: none;
+}
+
+.rack__unit .tape {
+  font-size: 0.66rem;
+  flex: none;
+}
+
+/* Front-panel details, one per kind of equipment */
+.rack__detail {
+  flex: 1;
+  align-self: stretch;
+  margin-block: 0.7rem;
+  border-radius: 1px;
+}
+
+.rack__unit--switch .rack__detail,
+.rack__unit--patch-panel .rack__detail {
+  background:
+    repeating-linear-gradient(90deg, #0b0d0e 0 0.62rem, transparent 0.62rem 0.82rem) 0 0 / 100% 42% no-repeat,
+    repeating-linear-gradient(90deg, #0b0d0e 0 0.62rem, transparent 0.62rem 0.82rem) 0 100% / 100% 42% no-repeat;
+}
+
+.rack__unit--patch-panel .rack__detail {
+  margin-block: 1.1rem;
+  background:
+    repeating-linear-gradient(90deg, #0b0d0e 0 0.7rem, transparent 0.7rem 0.95rem) 0 0 / 100% 40% no-repeat,
+    repeating-linear-gradient(
+        90deg,
+        var(--cable-teal) 0 0.7rem,
+        transparent 0.7rem 0.95rem,
+        var(--cable-blue) 0.95rem 1.65rem,
+        transparent 1.65rem 1.9rem,
+        var(--cable-yellow) 1.9rem 2.6rem,
+        transparent 2.6rem 2.85rem
+      )
+      0 100% / 100% 40% no-repeat;
+  opacity: 0.9;
+}
+
+.rack__unit--firewall .rack__detail {
+  background:
+    radial-gradient(circle, var(--led) 0 0.17rem, transparent 0.19rem) 0 50% / 0.8rem 0.8rem no-repeat,
+    repeating-linear-gradient(90deg, #0b0d0e 0 0.7rem, transparent 0.7rem 0.95rem) 1.3rem 50% / 4.6rem 55% no-repeat;
+}
+
+.rack__unit--wi-fi .rack__detail {
+  background:
+    radial-gradient(circle, var(--led) 0 0.17rem, transparent 0.19rem) 0 50% / 0.8rem 0.8rem repeat-x;
+  max-width: 3.2rem;
+}
+
+.rack__unit--nvr-cctv .rack__detail,
+.rack__unit--server-nas .rack__detail {
+  background: repeating-linear-gradient(90deg, #1b1e21 0 2.4rem, #0d0f10 2.4rem 2.55rem);
+  box-shadow: inset 0 0 0 1px #0d0f10;
+}
+
+.rack__unit--ups .rack__detail {
+  background:
+    linear-gradient(#0e1a14, #0e1a14) 0 50% / 3rem 1.4rem no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 0.3rem, #15181a 0.3rem 0.55rem) 4rem 0 / calc(100% - 4rem) 100% no-repeat;
+}
+
+.rack__leader {
+  display: none;
+}
+
+.rack__note {
+  font-size: 0.97rem;
+  line-height: 1.45;
+  color: var(--rack-ink-2);
+}
+
+.rack__name {
+  color: var(--rack-ink);
+  font-weight: 680;
+}
+
+.rack__svc {
+  color: var(--teal);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Outside the cabinet */
+.rack__off {
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  padding-top: 1.5rem;
+  border-top: var(--stroke) solid var(--rack-line);
+}
+
+.rack__off-title {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.rack__off-list {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem 2rem;
+}
+
+.rack__off-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.rack__off-list a {
+  color: var(--rack-ink);
+  text-decoration: none;
+}
+
+.rack__off-list a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 40em) {
+  .rack__off-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Drawn as a proper elevation: rails, touching units, leader lines */
+@media (min-width: 56em) {
+  .rack__units {
+    position: relative;
+    gap: 0;
+    padding-block: 0.6rem;
+  }
+
+  .rack__units::before,
+  .rack__units::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--rail);
+    background:
+      linear-gradient(90deg, #2d3236 0 0.3rem, transparent 0.3rem 0.8rem, #2d3236 0.8rem),
+      repeating-linear-gradient(180deg, #2d3236 0 0.42rem, #060707 0.42rem 0.82rem);
+    border-radius: 1px;
+  }
+
+  .rack__units::before {
+    left: 0;
+  }
+
+  .rack__units::after {
+    left: calc(var(--rack-w) - var(--rail));
+  }
+
+  .rack__row {
+    grid-template-columns: var(--rack-w) 4.5rem minmax(0, 36rem);
+    gap: 0;
+    align-items: center;
+  }
+
+  .rack__unit {
+    align-self: stretch;
+    margin-inline: var(--rail);
+  }
+
+  .rack__leader {
+    display: block;
+    position: relative;
+    height: var(--stroke);
+    margin-inline: 0.6rem 0.9rem;
+    background: var(--rack-ink-3);
+  }
+
+  .rack__leader::before {
+    content: '';
+    position: absolute;
+    left: -0.3rem;
+    top: -0.25rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--rack-ink-3);
+  }
+
+  .rack__note {
+    padding-block: 0.3rem;
+  }
+
+  .rack__off-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75em) {
+  .rack {
+    --rack-w: 26rem;
+  }
+}

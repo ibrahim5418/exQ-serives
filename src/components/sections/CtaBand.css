@@ -1,0 +1,105 @@
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 3rem + 6vw, 8rem);
+}
+
+.cta__inner {
+  position: relative;
+  display: grid;
+  gap: 2rem 4rem;
+}
+
+.cta__title {
+  font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 19ch;
+}
+
+.cta__side {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+  justify-items: start;
+  max-width: 28rem;
+}
+
+.cta__text {
+  color: var(--rack-ink-2);
+  font-size: 1.08rem;
+}
+
+.cta__direct {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.cta__direct li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--rack-ink-3);
+}
+
+.cta__direct a {
+  color: var(--rack-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cta__direct a:hover {
+  text-decoration: underline;
+}
+
+/* A teal patch lead dropping into the band */
+.cta__cable {
+  display: none;
+}
+
+@media (min-width: 60em) {
+  .cta__inner {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .cta__cable {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: calc(var(--gutter) + 2.5rem);
+    width: 0.8rem;
+    height: 38%;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.16) 32%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.32)),
+      var(--cable-teal);
+  }
+
+  .cta__boot {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 2.35rem;
+    height: 1.9rem;
+    margin-left: -1.175rem;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0.14) 32%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.32)),
+      var(--cable-teal);
+    border-radius: 0.9rem 0.9rem 0.2rem 0.2rem / 1.1rem 1.1rem 0.2rem 0.2rem;
+  }
+
+  .cta__boot::after {
+    /* clear plug body with contacts */
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0.35rem;
+    right: 0.35rem;
+    height: 1.35rem;
+    background:
+      repeating-linear-gradient(90deg, rgba(196, 160, 78, 0.95) 0 1.5px, transparent 1.5px 3.7px) bottom / 100% 34% no-repeat,
+      linear-gradient(180deg, #d9dcd9, #aeb3b0);
+    border-radius: 0 0 1px 1px;
+  }
+}

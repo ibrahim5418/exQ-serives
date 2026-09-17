@@ -1,0 +1,36 @@
+.legal {
+  max-width: 50rem;
+}
+
+.legal__updated {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  padding-bottom: 1.5rem;
+  border-bottom: var(--stroke) solid var(--rule);
+}
+
+.legal__section {
+  padding-top: 2.25rem;
+}
+
+.legal__section h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.8rem;
+}
+
+.legal__section p,
+.legal__section li {
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+.legal__section ul {
+  margin-top: 0.8rem;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.legal__section ul + p {
+  margin-top: 1em;
+}

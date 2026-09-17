@@ -1,0 +1,126 @@
+.ind-note {
+  display: grid;
+  gap: 1rem 4rem;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.ind-note p {
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+
+@media (min-width: 60em) {
+  .ind-note {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    align-items: baseline;
+  }
+}
+
+.ind-list {
+  border-top: var(--stroke) solid var(--rule);
+}
+
+.ind {
+  display: grid;
+  gap: 1rem 2.5rem;
+  padding-block: 2rem 2.25rem;
+  border-bottom: 1px solid var(--sheet-line);
+  scroll-margin-top: 6rem;
+}
+
+.ind:focus {
+  outline: none;
+}
+
+.ind:target .ind__name {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--teal);
+  text-underline-offset: 0.25em;
+}
+
+.ind__name {
+  font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+  max-width: 14ch;
+}
+
+.ind__title {
+  font-weight: 640;
+  margin-bottom: 0.4rem;
+}
+
+.ind__intro {
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+
+.ind__label {
+  font-size: 0.74rem;
+  font-weight: 640;
+  font-stretch: 80%;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.5rem;
+}
+
+.ind__needs ul,
+.ind__svc ul {
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.ind__needs li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--ink-2);
+  font-size: 0.97rem;
+  line-height: 1.45;
+}
+
+.ind__needs li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.45rem;
+  height: var(--stroke);
+  background: var(--ink);
+}
+
+.ind__svc a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.97rem;
+  text-decoration: none;
+}
+
+.ind__svc a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 48em) {
+  .ind {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .ind__name,
+  .ind__body {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 72em) {
+  .ind {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 4.5fr) minmax(0, 3.2fr) minmax(0, 2.3fr);
+    align-items: start;
+  }
+
+  .ind__name,
+  .ind__body {
+    grid-column: auto;
+  }
+}

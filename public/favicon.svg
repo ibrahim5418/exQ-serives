@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#141618"/>
+  <text x="9" y="46" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="40" fill="#eef0ec" letter-spacing="-2">Q</text>
+  <rect x="44" y="38" width="9" height="9" fill="#07bfc2"/>
+</svg>

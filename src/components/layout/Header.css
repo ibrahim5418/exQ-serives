@@ -1,0 +1,297 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--rack-line);
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-height: 4.25rem;
+}
+
+.site-header__brand {
+  text-decoration: none;
+  color: var(--rack-ink);
+  margin-right: auto;
+  padding-block: 0.4rem;
+}
+
+.site-header__cta {
+  min-height: 2.6rem;
+  padding: 0.5em 1em;
+  font-size: 0.95rem;
+}
+
+/* ---------- Desktop nav ---------- */
+.nav-desktop {
+  display: none;
+}
+
+.nav-desktop__list {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+}
+
+.nav-desktop__item {
+  position: relative;
+}
+
+.nav-desktop__split {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.62rem 0.38rem;
+  font-size: 0.95rem;
+  font-weight: 560;
+  font-stretch: 94%;
+  color: var(--rack-ink-2);
+  text-decoration: none;
+  border-radius: 1px;
+  transition: color 150ms var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--rack-ink);
+}
+
+/* The current page is marked with a strip of label tape. */
+.nav-link[aria-current='page'],
+.nav-link.active {
+  color: var(--tape-ink);
+  background: var(--tape);
+  font-weight: 640;
+}
+
+.nav-desktop__caret {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 2rem;
+  margin-left: 0.1rem;
+  background: none;
+  border: 0;
+  color: var(--rack-ink-2);
+  border-radius: 2px;
+}
+
+.nav-desktop__caret svg {
+  transition: transform 200ms var(--ease-out);
+}
+
+.nav-desktop__caret[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+
+.nav-desktop__caret:hover {
+  color: var(--rack-ink);
+}
+
+/* Services dropdown: a small patch list. Mouse users get it on hover;
+   the caret button opens it for click, touch and keyboard. */
+@media (hover: hover) and (pointer: fine) {
+  .has-menu:hover .services-menu {
+    display: block;
+  }
+}
+
+.services-menu {
+  position: absolute;
+  top: calc(100% + 0.9rem);
+  left: -1rem;
+  width: 23rem;
+  padding: 0.6rem;
+  background: var(--rack-raised);
+  border-radius: var(--radius);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 20px -10px rgba(0, 0, 0, 0.75);
+  animation: menu-in 200ms var(--ease-out);
+}
+
+.services-menu::before {
+  /* hover bridge so the menu doesn't close crossing the gap */
+  content: '';
+  position: absolute;
+  inset: -1rem 0 auto;
+  height: 1rem;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+.services-menu__list {
+  list-style: none;
+}
+
+.services-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.62rem 0.7rem;
+  color: var(--rack-ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 540;
+  border-radius: 2px;
+}
+
+.services-menu__link:hover,
+.services-menu__link[aria-current='page'] {
+  background: var(--rack-panel);
+}
+
+.services-menu__port {
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-stretch: 80%;
+  color: var(--rack-ink-3);
+  width: 1.2rem;
+}
+
+.services-menu__all {
+  display: block;
+  margin-top: 0.4rem;
+  padding: 0.7rem 0.7rem 0.4rem;
+  border-top: 1px solid var(--rack-line);
+  color: var(--teal);
+  font-size: 0.9rem;
+  font-weight: 620;
+  text-decoration: none;
+}
+
+.services-menu__all:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Mobile toggle and panel ---------- */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0 0.8rem;
+  background: none;
+  border: var(--stroke) solid #4a5054;
+  border-radius: var(--radius);
+  color: var(--rack-ink);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.mobile-nav {
+  position: fixed;
+  inset: 4.3rem 0 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--rack);
+  border-top: 1px solid var(--rack-line);
+}
+
+.mobile-nav__inner {
+  padding-block: 1rem 2.5rem;
+}
+
+.mobile-nav__list {
+  list-style: none;
+}
+
+.mobile-nav__list > li {
+  border-bottom: 1px solid var(--rack-line);
+}
+
+.mobile-nav__link {
+  display: flex;
+  padding: 0.95rem 0;
+  font-size: 1.35rem;
+  font-weight: 680;
+  font-stretch: 92%;
+  letter-spacing: -0.01em;
+  color: var(--rack-ink);
+  text-decoration: none;
+}
+
+.mobile-nav__link[aria-current='page'] {
+  color: var(--teal);
+}
+
+.mobile-nav__sub {
+  list-style: none;
+  padding: 0 0 0.9rem 0.1rem;
+  margin-top: -0.35rem;
+}
+
+.mobile-nav__sublink {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0;
+  color: var(--rack-ink-2);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.mobile-nav__sublink[aria-current='page'] {
+  color: var(--rack-ink);
+  font-weight: 620;
+}
+
+.mobile-nav__foot {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.mobile-nav__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--rack-ink);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+
+html.menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 30em) {
+  .site-header__cta {
+    display: none;
+  }
+}
+
+@media (min-width: 64em) {
+  .nav-desktop {
+    display: block;
+  }
+
+  .nav-toggle,
+  .mobile-nav {
+    display: none !important;
+  }
+
+  .site-header__bar {
+    min-height: 4.5rem;
+    gap: var(--s-5);
+  }
+}
+
+@media (min-width: 75em) {
+  .nav-desktop__list {
+    gap: 0.4rem;
+  }
+}

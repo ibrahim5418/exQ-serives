@@ -1,0 +1,82 @@
+.cable-run {
+  list-style: none;
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding-left: 2.25rem;
+}
+
+/* the run itself */
+.cable-run::before {
+  content: '';
+  position: absolute;
+  left: 0.55rem;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: var(--stroke);
+  background: var(--ink);
+}
+
+.cable-run__step {
+  position: relative;
+}
+
+.cable-run__point {
+  position: absolute;
+  left: -2.25rem;
+  top: 0.15rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  background: var(--sheet);
+  border: var(--stroke) solid var(--ink);
+  border-radius: 1px;
+}
+
+.cable-run__point::after {
+  content: '';
+  position: absolute;
+  inset: 0.22rem;
+  background: var(--run);
+}
+
+.cable-run__num {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-stretch: 80%;
+  color: var(--ink-3);
+  margin-bottom: 0.2rem;
+}
+
+.cable-run__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.cable-run__text {
+  color: var(--ink-2);
+  max-width: 34ch;
+}
+
+@media (min-width: 60em) {
+  .cable-run {
+    grid-template-columns: repeat(var(--steps), minmax(0, 1fr));
+    gap: 1.75rem;
+    padding-left: 0;
+    padding-top: 2.4rem;
+  }
+
+  .cable-run::before {
+    left: 0;
+    right: 0;
+    top: 0.55rem;
+    bottom: auto;
+    width: auto;
+    height: var(--stroke);
+  }
+
+  .cable-run__point {
+    left: 0;
+    top: -2.4rem;
+  }
+}
