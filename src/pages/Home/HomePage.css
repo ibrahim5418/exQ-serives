@@ -1,379 +1,387 @@
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
+  margin-top: calc(-1 * var(--header-h));
+  padding-top: calc(var(--header-h) + clamp(2rem, 1rem + 4vw, 5rem));
+  padding-bottom: clamp(3.5rem, 2rem + 5vw, 7rem);
+  background: var(--tint);
+  border-bottom: 1px solid var(--border);
   overflow: hidden;
-  padding-block: clamp(2.75rem, 1.5rem + 4.5vw, 5.5rem) clamp(3rem, 2rem + 3vw, 5rem);
+  isolation: isolate;
 }
 
 .hero__grid {
   display: grid;
-  gap: 2.5rem;
-}
-
-.hero__title {
-  font-size: var(--fs-display);
-  font-weight: 790;
-  font-stretch: 86%;
-  line-height: 0.98;
-  letter-spacing: -0.024em;
-  max-width: 12.5ch;
-}
-
-.hero__dot {
-  color: var(--teal);
-}
-
-.hero__lead {
-  margin: 1.5rem 0 2.1rem;
-  max-width: 40ch;
-  font-size: var(--fs-lead);
-  line-height: 1.5;
-  color: var(--rack-ink-2);
-}
-
-.hero__photo .figure__frame {
-  aspect-ratio: 16 / 10;
-}
-
-/* Small screens: headline, then the patch panel, then the photo. */
-.hero__grid {
-  grid-template-areas: 'copy' 'panel' 'photo';
+  gap: var(--s-6);
+  align-items: center;
 }
 
 .hero__copy {
-  grid-area: copy;
-}
-
-.hero__panel {
-  grid-area: panel;
-}
-
-.hero__photo {
-  grid-area: photo;
-}
-
-@media (min-width: 60em) {
-  .hero__grid {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    grid-template-areas: 'copy photo' 'panel panel';
-    align-items: end;
-    gap: 3.5rem 4rem;
-  }
-
-  .hero__photo .figure__frame {
-    aspect-ratio: 5 / 4;
-  }
-}
-
-/* Rack rails framing the hero on wide screens */
-@media (min-width: 90em) {
-  .hero::before,
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1.1rem;
-    background:
-      linear-gradient(90deg, #262a2e 0 0.3rem, transparent 0.3rem 0.8rem, #262a2e 0.8rem),
-      repeating-linear-gradient(180deg, #262a2e 0 0.42rem, #060707 0.42rem 0.82rem);
-  }
-
-  .hero::before {
-    left: 1.25rem;
-  }
-
-  .hero::after {
-    right: 1.25rem;
-  }
-}
-
-/* ---------- Intro and moments ---------- */
-.intro__grid {
   display: grid;
-  gap: 2rem 5rem;
-}
-
-.intro__statement {
-  font-size: clamp(1.7rem, 1.15rem + 2.2vw, 2.9rem);
-  line-height: 1.12;
-  max-width: 22ch;
-}
-
-.intro__body {
-  display: grid;
-  gap: 1.25rem;
+  gap: var(--s-5);
   justify-items: start;
+  position: relative;
+  z-index: 1;
 }
 
-.intro__body p + p {
-  margin-top: 0;
+.hero__title {
+  font-size: var(--fs-h1);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
 }
 
-.moments {
-  margin-top: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+.hero__title .tone {
+  color: var(--primary);
 }
 
-.moments__title {
-  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem);
-  margin-bottom: 1.5rem;
+.hero__lead {
+  max-width: 54ch;
 }
 
+.hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.hero__trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.hero__trust span::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero__art {
+  position: absolute;
+  right: -6rem;
+  top: 50%;
+  z-index: -1;
+  width: min(36rem, 90vw);
+  transform: translateY(-50%);
+  opacity: 0.18;
+}
+
+.hero-art__ring {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+.hero-art__ring--dash {
+  stroke-dasharray: 2 8;
+}
+
+.hero-art__line {
+  stroke: var(--primary);
+  stroke-width: 1.5;
+  opacity: 0.55;
+}
+
+.hero-art__line--strong {
+  opacity: 1;
+  stroke-width: 2;
+}
+
+.hero-art__line--faint {
+  opacity: 0.3;
+}
+
+.hero-art__line--accent {
+  stroke: var(--accent);
+  opacity: 1;
+  stroke-width: 3;
+}
+
+.hero-art__node {
+  fill: var(--primary);
+}
+
+.hero-art__node--accent {
+  fill: var(--accent);
+}
+
+/* Lines draw themselves in along the signal path (each ≤300ms), then small
+   packets travel the links. Decorative only; all of it stops under reduced motion. */
+.hero-art__draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw var(--dur-slow) var(--ease-out) forwards;
+  animation-delay: calc(var(--d, 0) * 70ms + 120ms);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-art__packet {
+  fill: var(--accent);
+  offset-rotate: 0deg;
+  offset-distance: 0%;
+  opacity: 0;
+  animation: packet 3.3s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+@keyframes packet {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  34% {
+    offset-distance: 100%;
+    opacity: 1;
+  }
+  40%,
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+.hero-art__blink {
+  animation: hero-led 3.6s steps(1, end) infinite;
+}
+
+@keyframes hero-led {
+  0%, 100% { opacity: 1; }
+  12% { opacity: 0.3; }
+  14% { opacity: 1; }
+  52% { opacity: 0.3; }
+  54% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art__draw {
+    stroke-dashoffset: 0;
+  }
+
+  .hero-art__packet {
+    display: none;
+  }
+}
+
+@media (min-width: 64em) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  }
+
+  .hero__art {
+    position: static;
+    width: 100%;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ---------- Moments ---------- */
 .moments__list {
   list-style: none;
   display: grid;
-  gap: 0 3rem;
+  gap: var(--s-4);
+}
+
+@media (min-width: 40em) {
+  .moments__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .moments__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .moments__item {
-  display: grid;
-  gap: 0.6rem;
-  align-content: start;
-  padding: 1.25rem 0 1.5rem;
-  border-top: var(--stroke) solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-5);
 }
 
-.moments__item p {
-  font-size: 1.15rem;
-  font-weight: 540;
-  line-height: 1.4;
-  max-width: 34ch;
+.moments__text {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
 .moments__link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  justify-self: start;
-  font-size: 0.92rem;
-  font-weight: 620;
-  color: var(--ink-2);
-  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .moments__link:hover {
-  color: var(--ink);
-  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
+.moments__link svg:first-child {
+  color: var(--accent-text);
+}
+
+.moments__link svg:last-child {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.moments__item:hover .moments__link svg:last-child {
+  transform: translateX(4px);
+}
+
+/* ---------- Engagement tracks ---------- */
+.tracks {
+  display: grid;
+  gap: var(--s-4);
 }
 
 @media (min-width: 48em) {
-  .moments__list {
+  .tracks {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 60em) {
-  .intro__grid {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    align-items: start;
-  }
-
-  .intro__body {
-    padding-top: 0.6rem;
-  }
+.track {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding: clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem);
 }
 
-@media (min-width: 75em) {
-  .moments__list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.track:first-child {
+  background: var(--tint);
 }
 
-.services__more {
-  margin-top: 2.25rem;
+.track__title {
+  font-size: var(--fs-h2);
+  color: var(--primary);
 }
 
-/* ---------- Why exQ ---------- */
-.why__grid {
-  display: grid;
-  gap: 2.5rem 5rem;
-}
-
-.why__copy h2 {
-  max-width: 16ch;
-}
-
-.why__intro {
-  margin: 1rem 0 2rem;
-  color: var(--ink-2);
+.track__text {
+  flex: 1;
   font-size: var(--fs-lead);
-  max-width: 40ch;
+  color: var(--text-muted);
+  max-width: 44ch;
 }
 
+/* ---------- Why exQ: four columns divided by rules, after the reference ---------- */
 .values {
-  margin: 0;
-  border-top: var(--stroke) solid var(--rule);
+  list-style: none;
+  display: grid;
+  border-top: 1px solid var(--border);
 }
 
 .values__item {
   display: grid;
-  gap: 0.25rem 2rem;
-  padding: 1.05rem 0 1.15rem;
-  border-bottom: 1px solid var(--sheet-line);
+  align-content: start;
+  gap: var(--s-3);
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--border);
 }
 
-.values dt {
-  font-weight: 700;
-  font-stretch: 94%;
-  font-size: 1.05rem;
+.values__icon {
+  color: var(--primary);
 }
 
-.values dd {
-  margin: 0;
-  color: var(--ink-2);
+.values__title {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
-.why__photo {
-  max-width: 34rem;
+.values__item p {
+  color: var(--text-muted);
 }
 
 @media (min-width: 40em) {
-  .values__item {
-    grid-template-columns: 15rem minmax(0, 1fr);
-  }
-}
-
-@media (min-width: 60em) {
-  .why__grid {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    align-items: center;
-  }
-}
-
-/* ---------- Industries strip ---------- */
-.industries-strip__head {
-  justify-items: start;
-}
-
-.industries-strip__list {
-  list-style: none;
-  display: grid;
-  border-top: var(--stroke) solid var(--rule);
-}
-
-.industries-strip__list a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--sheet-line);
-  font-size: 1.2rem;
-  font-weight: 640;
-  font-stretch: 94%;
-  text-decoration: none;
-}
-
-.industries-strip__list a svg {
-  flex: none;
-  color: var(--ink-3);
-  transition: transform 220ms var(--ease-out), color 160ms;
-}
-
-.industries-strip__list a:hover svg {
-  transform: translateX(4px);
-  color: var(--ink);
-}
-
-@media (min-width: 48em) {
-  .industries-strip__list {
+  .values {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2.5rem;
   }
-}
 
-/* ---------- Projects ---------- */
-/* A work-order list: one ruled row per kind of job, tagged with its cable. */
-.projects-wrap {
-  display: grid;
-  gap: 0 4rem;
-}
+  .values__item {
+    padding: var(--s-6) var(--s-5);
+  }
 
-.projects {
-  list-style: none;
-  border-top: var(--stroke) solid var(--rule);
-}
-
-.projects__row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.3rem 1.5rem;
-  padding: 1.05rem 0 1.15rem;
-  border-bottom: 1px solid var(--sheet-line);
-}
-
-.projects__title {
-  font-size: 1.1rem;
-}
-
-.projects__text {
-  color: var(--ink-2);
-}
-
-.projects__svc {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-self: start;
-  font-size: 0.9rem;
-  font-weight: 620;
-  color: var(--ink-2);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.projects__svc:hover {
-  color: var(--ink);
-  text-decoration: underline;
-}
-
-@media (min-width: 48em) {
-  .projects__row {
-    /* fixed outer tracks so every row shares the same columns */
-    grid-template-columns: 13.5rem minmax(0, 1fr) 12.25rem;
-    align-items: baseline;
+  .values__item:nth-child(odd) {
+    padding-left: 0;
+    border-right: 1px solid var(--border);
   }
 }
 
 @media (min-width: 64em) {
-  .projects-wrap {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-    align-items: start;
+  .values {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-bottom: 1px solid var(--border);
   }
 
-  .projects-wrap .services__more {
-    grid-column: 2;
+  .values__item {
+    border-bottom: 0;
+    border-right: 1px solid var(--border);
+    padding: var(--s-6) var(--s-5);
+  }
+
+  .values__item:nth-child(odd) {
+    padding-left: var(--s-5);
+  }
+
+  .values__item:first-child {
+    padding-left: 0;
+  }
+
+  .values__item:last-child {
+    border-right: 0;
   }
 }
 
-/* ---------- Commitments ---------- */
-.commit__list {
-  list-style: none;
-  border-top: var(--stroke) solid var(--rule);
+.home-tech {
+  margin-top: var(--s-7);
 }
 
-.commit__item {
+/* ---------- Industries chips ---------- */
+.industries-strip {
   display: grid;
-  gap: 0.6rem 4rem;
-  padding: 1.6rem 0 1.8rem;
-  border-bottom: 1px solid var(--sheet-line);
+  gap: var(--s-5);
 }
 
-.commit__item h3 {
-  font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.8rem);
-  font-weight: 720;
-  max-width: 22ch;
+@media (min-width: 64em) {
+  .industries-strip {
+    grid-template-columns: 5fr 7fr;
+    align-items: center;
+  }
+
+  .industries-strip .section-head {
+    margin-bottom: 0;
+  }
 }
 
-.commit__item p {
-  color: var(--ink-2);
-  max-width: 46ch;
-  font-size: 1.05rem;
+/* ---------- Leadership teaser ---------- */
+.leaders-strip {
+  display: grid;
+  gap: var(--s-5);
 }
 
-@media (min-width: 60em) {
-  .commit__item {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: baseline;
+@media (min-width: 64em) {
+  .leaders-strip {
+    grid-template-columns: 5fr 7fr;
+    align-items: center;
+  }
+
+  .leaders-strip .section-head {
+    margin-bottom: 0;
   }
 }

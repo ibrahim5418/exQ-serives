@@ -1,32 +1,38 @@
 import { Link } from 'react-router'
-import { services } from '../../data/services'
+import { practiceAreas } from '../../data/services'
 import PageHeader from '../../components/common/PageHeader'
 import Button from '../../components/common/Button'
-import { Jack } from '../../components/common/Icons'
+import { ArrowRight, ServiceIcon } from '../../components/common/Icons'
+import './NotFoundPage.css'
 
+// Branded 404 (Task 20). The prerendered 404.html is served with status 404 and noindex.
 export default function NotFoundPage() {
   return (
     <>
       <PageHeader
-        title="Nothing is patched into this port."
+        title="We can’t find that page"
         lead="The page you were looking for doesn’t exist or has moved. These are the places most people are after."
       >
-        <Button to="/">Go to the homepage</Button>
-        <Button to="/contact" variant="ghost">
-          Contact us
+        <Button to="/">Home</Button>
+        <Button to="/services" variant="secondary">
+          Services
+        </Button>
+        <Button to="/contact" variant="secondary">
+          Contact
         </Button>
       </PageHeader>
       <section className="section section--tight" aria-labelledby="nf-services">
         <div className="container">
-          <h2 id="nf-services" style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>
+          <h2 id="nf-services" className="label">
             Our services
           </h2>
-          <ul style={{ listStyle: 'none', display: 'grid', gap: '0.6rem' }}>
-            {services.map((s) => (
+          <ul className="nf-list">
+            {practiceAreas.flatMap((a) => a.services).map((s) => (
               <li key={s.slug}>
-                <Link to={`/services/${s.slug}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', fontWeight: 600 }}>
-                  <Jack cable={s.cable} size={14} />
+                <Link to={`/services/${s.slug}`}>
+                  <ServiceIcon name={s.icon} size={20} />
                   {s.name}
+                  <ArrowRight width={18} height={18} />
                 </Link>
               </li>
             ))}

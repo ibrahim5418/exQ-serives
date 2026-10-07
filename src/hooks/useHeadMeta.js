@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
-import { getMeta, ogImagePath } from '../routes/meta'
+import { getMeta, ogImageAlt, ogImagePath } from '../routes/meta'
 import { company } from '../data/company'
 
 function upsert(selector, create) {
@@ -21,9 +21,9 @@ function setMeta(attr, key, content) {
   el.setAttribute('content', content)
 }
 
-// Keeps <title>, description, canonical and Open Graph tags in step with the
-// current route after client-side navigation. The first page load already
-// has these tags from the prerendered HTML.
+// Keeps <title>, description, canonical, Open Graph/Twitter tags and page
+// JSON-LD in step with the current route after client-side navigation. The
+// first page load already has all of these from the prerendered HTML.
 export function useHeadMeta() {
   const { pathname } = useLocation()
 
@@ -38,12 +38,31 @@ export function useHeadMeta() {
     setMeta('property', 'og:type', 'website')
     setMeta('property', 'og:site_name', company.name)
     setMeta('property', 'og:image', `${company.siteUrl}${ogImagePath}`)
+    setMeta('property', 'og:image:alt', ogImageAlt)
     setMeta('name', 'twitter:card', 'summary_large_image')
-    const canonical = upsert('link[rel="canonical"]', () => {
-      const l = document.createElement('link')
-      l.rel = 'canonical'
-      return l
-    })
-    canonical.href = meta.url
+    setMeta('name', 'twitter:title', meta.title)
+    setMeta('name', 'twitter:description', meta.description)
+    setMeta('name', 'twitter:image', `${company.siteUrl}${ogImagePath}`)
+    setMeta('name', 'twitter:image:alt', ogImageAlt)
+
+    const canonical = document.head.querySelector('link[rel="canonical"]')
+    if (meta.noindex) {
+      canonical?.remove()
+    } else {
+      upsert('link[rel="canonical"]', () => {
+        const l = document.createElement('link')
+        l.rel = 'canonical'
+        return l
+      }).href = meta.url
+    }
+
+    document.head.querySelectorAll('script[data-page-ld]').forEach((s) => s.remove())
+    for (const block of meta.jsonLd) {
+      const s = document.createElement('script')
+      s.type = 'application/ld+json'
+      s.dataset.pageLd = ''
+      s.textContent = JSON.stringify(block)
+      document.head.appendChild(s)
+    }
   }, [pathname])
 }

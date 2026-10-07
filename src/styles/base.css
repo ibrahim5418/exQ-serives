@@ -7,7 +7,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  background: var(--bg);
 }
 
 body {
@@ -15,24 +16,38 @@ body {
   font-family: var(--font);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--ink);
-  background: var(--ground);
-  font-stretch: 100%;
+  color: var(--text);
+  background: var(--bg);
   font-kerning: normal;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  touch-action: manipulation;
+}
+
+/* Theme switch: colours ease over ≤200ms, only while switching (Task 8). */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    fill 200ms ease,
+    stroke 200ms ease !important;
 }
 
 img,
 svg,
-video {
+video,
+iframe {
   display: block;
   max-width: 100%;
 }
 
 img {
   height: auto;
+  filter: var(--img-filter);
 }
 
 h1,
@@ -41,37 +56,37 @@ h3,
 h4 {
   margin: 0;
   line-height: var(--lh-head);
-  font-weight: 760;
-  font-stretch: 94%;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   text-wrap: balance;
+  color: var(--text);
+}
+
+/* Display face for the two top heading levels and every .display element. */
+h1,
+h2,
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
 }
 
 h1 {
   font-size: var(--fs-h1);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
 }
 
 h2 {
   font-size: var(--fs-h2);
-  letter-spacing: -0.016em;
 }
 
 h3 {
   font-size: var(--fs-h3);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
 p {
   margin: 0;
   text-wrap: pretty;
-}
-
-.prose p + p,
-.legal__section p + p {
-  margin-top: 1em;
 }
 
 ul,
@@ -81,13 +96,14 @@ ol {
 }
 
 a {
-  color: inherit;
+  color: var(--link);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
+  text-underline-offset: 0.2em;
+  transition: color var(--dur-fast) ease;
 }
 
 a:hover {
-  text-decoration-thickness: 2px;
+  color: var(--primary-hover);
 }
 
 button,
@@ -103,42 +119,23 @@ button {
 }
 
 strong {
-  font-weight: 680;
+  font-weight: 600;
+}
+
+address {
+  font-style: normal;
 }
 
 ::selection {
-  background: var(--teal);
-  color: var(--tape-ink);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 
+/* Focus ring on every interactive element: 2px, 2px offset (Task 21). */
 :focus-visible {
-  outline: 3px solid var(--teal);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.on-sheet :focus-visible,
-.sheet :focus-visible {
-  outline-color: var(--teal-ink);
-}
-
-html {
-  scrollbar-color: #9aa19d var(--ground);
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--ground);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #9aa19d;
-  border: 3px solid var(--ground);
-  border-radius: 6px;
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .visually-hidden {
@@ -157,13 +154,21 @@ html {
   font-variant-numeric: tabular-nums;
 }
 
+/* Scroll lock while the mobile menu is open. */
+html.menu-open,
+html.menu-open body {
+  overflow: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 }

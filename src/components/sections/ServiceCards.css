@@ -1,0 +1,89 @@
+.svc-cards {
+  list-style: none;
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 40em) {
+  .svc-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .svc-cards {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  /* 3 + 2 layout: the last two cards share the second row. */
+  .svc-card {
+    grid-column: span 2;
+  }
+
+  .svc-card:nth-child(4),
+  .svc-card:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  min-height: 100%;
+}
+
+.svc-card__num {
+  position: absolute;
+  top: clamp(1.5rem, 1.25rem + 0.6vw, 2rem);
+  right: clamp(1.5rem, 1.25rem + 0.6vw, 2rem);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.svc-card__title {
+  margin-top: var(--s-2);
+}
+
+.svc-card__text {
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.svc-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: var(--s-2);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.svc-card__more svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.svc-card:hover .svc-card__more svg {
+  transform: translateX(4px);
+}
+
+/* Secondary link sits above the card's stretched link. */
+.svc-card__also {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  min-height: 2.75rem;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.svc-card__also:hover {
+  color: var(--primary);
+}

@@ -1,50 +1,65 @@
 /* ---------- Wordmark ---------- */
 .wordmark {
-  font-weight: 820;
-  font-stretch: 96%;
-  font-size: 1.7rem;
-  letter-spacing: -0.045em;
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.04em;
   line-height: 1;
   white-space: nowrap;
+  color: var(--text);
+}
+
+.wordmark__q {
+  color: var(--primary);
 }
 
 .wordmark__dot {
-  color: var(--teal);
+  color: var(--accent);
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons: 48px tall, 8px radius (Task 9) ---------- */
 .btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  --btn-border: transparent;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6em;
+  gap: 0.55em;
   min-height: 3rem;
-  padding: 0.7em 1.15em 0.7em 1.25em;
-  border: var(--stroke) solid transparent;
-  border-radius: var(--radius);
-  font-weight: 680;
-  font-stretch: 94%;
-  font-size: 1rem;
+  padding: 0.65em 1.25em;
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-btn);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 600;
+  font-size: 0.9375rem;
   line-height: 1.2;
+  letter-spacing: 0.01em;
   text-decoration: none;
+  text-align: center;
   transition:
-    background-color 160ms var(--ease-out),
-    border-color 160ms var(--ease-out),
-    color 160ms var(--ease-out),
-    transform 120ms var(--ease-out);
+    background-color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
 
 .btn:hover {
+  color: var(--btn-fg);
   text-decoration: none;
 }
 
 .btn:active {
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 .btn__arrow {
   flex: none;
-  transition: transform 220ms var(--ease-out);
+  transition: transform var(--dur) var(--ease-out);
 }
 
 .btn:hover .btn__arrow {
@@ -52,49 +67,37 @@
 }
 
 .btn--primary {
-  background: var(--teal);
-  color: var(--tape-ink);
+  --btn-bg: var(--primary);
+  --btn-fg: var(--on-primary);
+  --btn-border: var(--primary);
 }
 
 .btn--primary:hover {
-  background: #1fd0d3;
+  --btn-bg: var(--primary-hover);
+  --btn-border: var(--primary-hover);
 }
 
-.btn--primary:active {
-  background: var(--teal-press);
+.btn--secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  --btn-border: var(--border-strong);
 }
 
-.btn--ghost {
-  border-color: #5d6468;
-  color: var(--rack-ink);
+.btn--secondary:hover {
+  --btn-bg: var(--card);
+  --btn-border: var(--primary);
+  --btn-fg: var(--primary);
 }
 
-.btn--ghost:hover {
-  border-color: var(--rack-ink);
-}
-
-.btn--ink {
-  background: var(--ink);
-  color: var(--sheet);
-}
-
-.btn--ink:hover {
-  background: #2a2f33;
-}
-
-.btn--outline {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
-.btn--outline:hover {
-  background: var(--ink);
-  color: var(--sheet);
+.btn--sm {
+  min-height: 2.75rem;
+  padding: 0.5em 1em;
+  font-size: 0.875rem;
 }
 
 .btn[disabled],
 .btn[aria-disabled='true'] {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
 }
@@ -105,118 +108,200 @@
   gap: var(--s-3);
 }
 
+@media (max-width: 47.99em) {
+  .btn-row--stack-mobile > .btn {
+    width: 100%;
+  }
+}
+
 /* Text link with arrow */
 .link-arrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.45em;
-  font-weight: 660;
+  gap: 0.4em;
+  font-weight: 600;
   text-decoration: none;
-  color: var(--ink);
-  border-bottom: var(--stroke) solid currentColor;
-  padding-bottom: 0.1em;
+  color: var(--link);
   line-height: 1.3;
+  min-height: 2.75rem;
 }
 
 .link-arrow svg {
-  transition: transform 220ms var(--ease-out);
+  flex: none;
+  transition: transform var(--dur) var(--ease-out);
 }
 
 .link-arrow:hover svg {
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
-.band-rack .link-arrow {
-  color: var(--rack-ink);
-}
-
-/* ---------- Label tape ---------- */
-.tape {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  padding: 0.3em 0.62em 0.26em;
-  font-size: var(--fs-label);
-  font-weight: 640;
-  font-stretch: 80%;
-  letter-spacing: 0.05em;
-  line-height: 1.1;
-  text-transform: uppercase;
-  color: var(--tape-ink);
-  background: var(--tape);
-  border-radius: 1px;
-  box-shadow: inset 0 0 0 1px rgba(17, 19, 20, 0.16);
-  white-space: nowrap;
-}
-
-.tape--yellow {
-  background: var(--tape-yellow);
-}
-
-.jack {
-  flex: none;
-}
-
-/* ---------- Figure with caption plate ---------- */
-.figure {
-  margin: 0;
+/* ---------- Cards: 1px border, 12px radius, shadow on hover (light) ---------- */
+.card {
   position: relative;
-}
-
-.figure__frame {
-  aspect-ratio: var(--ratio, auto);
-  overflow: hidden;
-  background: var(--rack-panel);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
+  padding: clamp(1.5rem, 1.25rem + 0.6vw, 2rem);
+  transition:
+    border-color var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
 }
 
-.figure__frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.card--interactive:hover,
+.card--interactive:focus-within {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
 }
 
-/* Fixed-ratio frames: the photo fills the box instead of sizing it, so a
-   portrait original can't push its grid column wider than the screen. */
-.figure--ratio .figure__frame {
-  position: relative;
-}
-
-.figure--ratio .figure__frame img {
+/* Whole card clickable through its main link, without nesting interactive elements. */
+.card__link::after {
+  content: '';
   position: absolute;
   inset: 0;
+  border-radius: inherit;
 }
 
-.figure__caption {
+.card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__link:hover {
+  color: inherit;
+}
+
+.card__link:focus-visible {
+  outline: none;
+}
+
+.card__link:focus-visible::after {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Icon tile used on cards */
+.icon-tile {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--accent-text);
+  border: 1px solid var(--border);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.card--interactive:hover .icon-tile {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+
+/* ---------- Chips and tags ---------- */
+.chips {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.chip {
+  display: inline-flex;
   align-items: center;
-  gap: var(--s-2) var(--s-3);
-  margin-top: var(--s-3);
+  gap: 0.5em;
+  min-height: 2.75rem;
+  padding: 0.5em 1.1em;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  background: var(--card);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.chip:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 0.75em;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
   font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.3;
 }
 
-.figure__caption .tape {
-  white-space: normal;
-  max-width: 100%;
+.label {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
 }
 
-.figure__note {
-  color: var(--ink-3);
-  font-size: 0.8rem;
+/* "Example engagement" disclaimer label (Task 14) */
+.example-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  line-height: 1.45;
 }
 
-.band-rack .figure__note {
-  color: var(--rack-ink-3);
+.example-label strong {
+  color: var(--accent-text);
+  font-weight: 600;
 }
 
-/* ---------- FAQ ---------- */
+/* Tick list */
+.ticks {
+  list-style: none;
+  display: grid;
+  gap: var(--s-3);
+}
+
+.ticks li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--text-muted);
+}
+
+.ticks li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 1rem;
+  height: 0.55rem;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* ---------- FAQ (native details) ---------- */
 .faq {
-  border-top: var(--stroke) solid var(--rule);
+  border-top: 1px solid var(--border);
 }
 
 .faq__item {
-  border-bottom: 1px solid var(--sheet-line);
+  border-bottom: 1px solid var(--border);
 }
 
 .faq__q {
@@ -224,9 +309,10 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--s-4);
-  padding: 1.15rem 0;
+  padding: 1.25rem 0;
   cursor: pointer;
   list-style: none;
+  min-height: 2.75rem;
 }
 
 .faq__q::-webkit-details-marker {
@@ -234,49 +320,341 @@
 }
 
 .faq__title {
-  font-size: 1.1rem;
-  font-weight: 660;
-  font-stretch: 96%;
-  letter-spacing: -0.005em;
-  line-height: 1.35;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  transition: color var(--dur-fast) ease;
+}
+
+.faq__q:hover .faq__title {
+  color: var(--primary);
 }
 
 .faq__icon {
   flex: none;
   margin-top: 0.15rem;
-  transition: transform 260ms var(--ease-out);
+  color: var(--primary);
+  transition: transform var(--dur) var(--ease-out);
 }
 
 .faq__item[open] .faq__icon {
   transform: rotate(45deg);
 }
 
-.faq__q:hover .faq__title {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
 .faq__a {
   padding: 0 2.5rem 1.4rem 0;
-  color: var(--ink-2);
+  color: var(--text-muted);
   max-width: var(--measure);
+}
+
+.faq__item[open] .faq__a {
+  animation: faq-open var(--dur-slow) var(--ease-out);
+}
+
+@keyframes faq-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* ---------- Breadcrumbs ---------- */
+.crumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.crumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.crumbs li + li::before {
+  content: '/';
+  color: var(--border-strong);
+}
+
+.crumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding-block: 0.6rem;
+}
+
+.crumbs a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.crumbs [aria-current] {
+  color: var(--text);
+  font-weight: 500;
 }
 
 /* ---------- Skip link ---------- */
 .skip-link {
-  position: absolute;
+  position: fixed;
   left: var(--gutter);
   top: -4rem;
-  z-index: 100;
-  padding: 0.6rem 1rem;
-  background: var(--tape-yellow);
-  color: var(--tape-ink);
-  font-weight: 700;
+  z-index: var(--z-skip);
+  padding: 0.75rem 1.1rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 600;
   text-decoration: none;
-  border-radius: var(--radius);
+  border-radius: var(--radius-btn);
 }
 
 .skip-link:focus {
   top: 0.75rem;
+  color: var(--on-primary);
+}
+
+/* ---------- Motion ----------
+   Content fades/slides in once, on first scroll into view (≤300ms).
+   Gated on html.js so nothing is hidden without JavaScript. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(min(var(--i, 0), 6) * 50ms);
+}
+
+/* Headline reveal: each line/word rises out of a mask, the reference's signature
+   move. Plays on page entry and replays on theme switch. Transform only, so the
+   text is painted (and counted for LCP) immediately. */
+.rise {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.rise-br {
+  display: none;
+}
+
+@media (min-width: 48em) {
+  .rise-br {
+    display: block;
+  }
+}
+
+.rise__inner {
+  display: inline-block;
+}
+
+.is-rising .rise__inner {
+  animation: rise var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(min(var(--i, 0), 8) * 40ms);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%) rotate(2deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Above-the-fold entrance: CSS only and transform only, so it never waits
+   for JavaScript and the text is painted (and counted for LCP) at once. */
+.is-rising .enter {
+  animation: enter var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(min(var(--i, 0), 8) * 40ms);
+}
+
+@keyframes enter {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Page transition, after the reference: a sheet with an angled leading edge
+   sweeps up off the new page (route changes only). The primary-coloured
+   sliver along the edge is the curtain itself showing below its inner sheet. */
+.curtain {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-curtain);
+  height: 118vh;
+  pointer-events: none;
+  background: var(--primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 14vh));
+  transform: translateY(-120vh);
+  will-change: transform;
+}
+
+.curtain::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 6px 0;
+  background: var(--bg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 14vh));
+}
+
+.curtain.is-active {
+  animation: curtain var(--dur-slow) cubic-bezier(0.7, 0, 0.3, 1) both;
+}
+
+@keyframes curtain {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+/* ---------- Pointer effects (see useInteractionEffects) ----------
+   Cards: a soft spotlight follows the cursor. */
+.card,
+.ind__part,
+.tech__item {
+  isolation: isolate;
+}
+
+.card::before,
+.ind__part::before,
+.tech__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    22rem circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--primary) 9%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-slow) ease;
+  pointer-events: none;
+}
+
+.ind__part,
+.tech__item {
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover::before,
+  .ind__part:hover::before,
+  .tech__item:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Magnetic buttons lean towards the cursor; the scale-on-press still applies. */
+.btn,
+.theme-toggle,
+.icon-btn {
+  translate: var(--tx, 0) var(--ty, 0);
+  transition-property: background-color, border-color, color, transform, translate;
+}
+
+.is-magnetic {
+  transition-duration: var(--dur-fast);
+}
+
+/* Text links: an underline sweeps in from the left on hover. */
+.sweep,
+.prose a,
+.footer__links a,
+.rack__svc,
+.book__after a,
+.form__privacy a,
+.cta-band__email a {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition:
+    background-size var(--dur-slow) var(--ease-out),
+    color var(--dur-fast) ease;
+}
+
+.sweep:hover,
+.prose a:hover,
+.footer__links a:hover,
+.rack__svc:hover,
+.book__after a:hover,
+.form__privacy a:hover,
+.cta-band__email a:hover,
+.sweep:focus-visible,
+.footer__links a:focus-visible {
+  background-size: 100% 1px;
+  text-decoration: none;
+}
+
+/* Resting state shows the underline where a link must look like a link. */
+.book__after a,
+.form__privacy a,
+.cta-band__email a {
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(color-mix(in srgb, currentColor 35%, transparent), color-mix(in srgb, currentColor 35%, transparent));
+  background-size:
+    0% 1px,
+    100% 1px;
+}
+
+.book__after a:hover,
+.form__privacy a:hover,
+.cta-band__email a:hover {
+  background-size:
+    100% 1px,
+    100% 1px;
+}
+
+/* Theme switch: the new theme spreads in a circle from the toggle
+   (View Transitions); the default cross-fade is switched off. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.theme-reveal::view-transition-old(root) {
+  z-index: 1;
+}
+
+.theme-reveal::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .curtain {
+    display: none;
+  }
+
+  .btn,
+  .theme-toggle,
+  .icon-btn {
+    translate: none;
+  }
 }

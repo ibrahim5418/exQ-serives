@@ -4,7 +4,7 @@
 export const generalFaqs = [
   {
     q: 'Where do you work?',
-    a: 'Our office is in Parrys, Chennai, and we work with businesses across India. Remote support works wherever you are; onsite visits are arranged according to your location.',
+    a: 'We are headquartered in Riyadh and support clients locally and internationally. Remote support works wherever you are; onsite visits are arranged according to your location.',
   },
   {
     q: 'What happens in a free IT consultation?',

@@ -1,0 +1,56 @@
+.quotes,
+.cs-cards {
+  list-style: none;
+  display: grid;
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+}
+
+@media (min-width: 48em) {
+  .quotes,
+  .cs-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.quote blockquote {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.quote__who {
+  display: grid;
+  margin-top: var(--s-4);
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+}
+
+.quote__who strong {
+  color: var(--text);
+}
+
+.logos {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.logos__item {
+  display: grid;
+  place-items: center;
+  min-height: 5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.cs-card {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.cs-card__summary {
+  color: var(--text-muted);
+}

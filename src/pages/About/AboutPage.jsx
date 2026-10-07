@@ -1,32 +1,18 @@
-import { Link } from 'react-router'
-import { company } from '../../data/company'
-import { services } from '../../data/services'
 import PageHeader from '../../components/common/PageHeader'
-import Figure from '../../components/common/Figure'
-import { ArrowRight, Jack } from '../../components/common/Icons'
+import Rise from '../../components/common/Rise'
+import LeaderCards from '../../components/sections/LeaderCards'
 import CtaBand from '../../components/sections/CtaBand'
-import teamImg from '../../assets/images/about-team-1600.webp'
-import teamImgSm from '../../assets/images/about-team-800.webp'
+import { leadershipIntro } from '../../data/team'
 import './AboutPage.css'
 
-const team = {
-  src: teamImg,
-  srcSm: teamImgSm,
-  width: 1600,
-  height: 1067,
-  alt: 'A group of young colleagues gathered around a table, laughing over a laptop',
-  caption: 'Colleagues around a meeting table',
-  note: 'Stock photo, not the exQ team',
-}
+// Section order follows Task 15: intro, mission, vision, how we work,
+// leadership, how we deliver, final CTA.
 
-// Verified facts only. Shown as an equipment rating plate rather than stat tiles.
-const plate = [
-  ['Team', 'More than 50 IT professionals'],
-  ['Businesses supported', 'Over 40 in the past year'],
-  ['Head office', 'Mannady Street, Parrys, Chennai'],
-  ['Clients', 'Across India'],
-  ['Support', 'Remote and onsite'],
-  ['Services', 'Six, from helpdesk to consulting'],
+const facts = [
+  ['Headquarters', 'Riyadh, Saudi Arabia'],
+  ['Delivery', 'Remote and onsite'],
+  ['Services', 'Five practice areas, one team'],
+  ['Engagements', 'Enterprises and growing businesses'],
 ]
 
 const principles = [
@@ -48,7 +34,7 @@ const principles = [
     title: 'People come first',
     body: [
       'Technology problems are really people problems: someone can’t work, a customer is waiting, a manager is stuck.',
-      'Our team pairs technical depth with a friendly, down-to-earth manner. We explain what we’re doing in plain language and treat your staff’s time as valuable.',
+      'We pair technical depth with a friendly, down-to-earth manner. We explain what we’re doing in plain language and treat your staff’s time as valuable.',
     ],
   },
 ]
@@ -59,55 +45,46 @@ export default function AboutPage() {
       <PageHeader
         crumbs={[{ label: 'About' }]}
         title="An IT team that works as part of yours"
-        lead="exQ Services is a Chennai-based team of more than 50 IT professionals. We look after the everyday technology of businesses across India: support, cloud, security, networks and websites."
-        aside={<Figure image={team} priority ratio="4 / 3" sizes="(min-width: 60em) 40vw, 100vw" />}
+        lead="exQ Services is an IT services company that looks after the everyday technology of growing businesses and enterprises: support, cloud, security, networks and web infrastructure. Headquartered in Riyadh, we support clients locally and internationally."
       />
 
-      <section className="section" aria-labelledby="who-title">
-        <div className="container about-who">
-          <div className="about-who__copy">
-            <h2 id="who-title">Who we are</h2>
-            <div className="prose">
-              <p>
-                Most growing businesses depend on technology every hour of the day, but few can justify a full IT
-                department of their own. That’s the gap we fill.
-              </p>
-              <p>
-                We’re a team of more than 50 IT professionals covering support, cloud platforms, cybersecurity,
-                networking, web infrastructure and consulting. In the past year alone we supported over 40 businesses,
-                from remote support and onsite troubleshooting to cloud management, security and infrastructure setup.
-              </p>
-              <p>
-                Our aim hasn’t changed: make IT effortless, secure and scalable, so the people we work with can focus on
-                growing their business.
-              </p>
-            </div>
-            <p className="about-who__line">Technology made simple. Support that sticks.</p>
-          </div>
-
-          <aside className="plate" aria-label="exQ Services at a glance">
-            <p className="plate__head">
-              <span className="wordmark">
-                exQ<span className="wordmark__dot">.</span>
-              </span>
-              <span className="plate__model">Services</span>
-            </p>
-            <dl className="plate__rows">
-              {plate.map(([k, v]) => (
-                <div key={k} className="plate__row">
-                  <dt>{k}</dt>
-                  <dd>{v}</dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
+      <section className="section section--tight" aria-label="exQ Services at a glance">
+        <div className="container">
+          <dl className="facts">
+            {facts.map(([k, v], i) => (
+              <div key={k} className="facts__item" data-reveal style={{ '--i': i }}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      <section className="section sheet" aria-labelledby="partner-title">
+      <section className="section section--surface" aria-label="Mission and vision">
+        <div className="container mv">
+          <div className="mv__item" data-reveal>
+            <h2 className="label">Mission</h2>
+            <p className="mv__text">
+              To give every organisation we work with IT that is secure, reliable and well documented, delivered by one
+              accountable team.
+            </p>
+          </div>
+          <div className="mv__item" data-reveal style={{ '--i': 1 }}>
+            <h2 className="label">Vision</h2>
+            <p className="mv__text">
+              To be the most trusted IT operations partner for businesses in Saudi Arabia and beyond.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="partner-title">
         <div className="container split split--even about-pair">
-          <div>
-            <h2 id="partner-title">A partner, not a call-out service</h2>
+          <div data-reveal>
+            <h2 id="partner-title" className="display">
+              A partner, not a call-out service
+            </h2>
             <div className="prose">
               <p>
                 Some IT providers only appear when something breaks. We’d rather be involved before it does. We get to
@@ -120,8 +97,8 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div>
-            <h2>Why proactive support matters</h2>
+          <div data-reveal style={{ '--i': 1 }}>
+            <h2 className="display">Why proactive support matters</h2>
             <div className="prose">
               <p>
                 Most IT failures give warning signs first: a disk filling up, a backup that quietly stopped running, a
@@ -137,14 +114,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="how-title">
+      <section className="section section--surface" aria-labelledby="how-title">
         <div className="container">
           <div className="section-head">
-            <h2 id="how-title">How we approach the work</h2>
+            <h2 id="how-title" className="display">
+              <Rise text="How we approach the work" />
+            </h2>
           </div>
           <div className="principles">
-            {principles.map((p) => (
-              <article key={p.title} className="principles__item">
+            {principles.map((p, i) => (
+              <article key={p.title} className="principles__item card" data-reveal style={{ '--i': i }}>
                 <h3>{p.title}</h3>
                 {p.body.map((para) => (
                   <p key={para.slice(0, 20)}>{para}</p>
@@ -155,53 +134,31 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section band-rack" aria-labelledby="cap-title">
-        <div className="container split">
+      <section id="leadership" className="section" aria-labelledby="leadership-title" tabIndex={-1}>
+        <div className="container">
           <div className="section-head">
-            <h2 id="cap-title">What we can take on</h2>
-            <p>
-              Six service lines, run by one team. That matters more than it sounds: the people setting up your firewall
-              also know how your cloud accounts and laptops are configured.
-            </p>
+            <h2 id="leadership-title" className="display">
+              <Rise text="Leadership" />
+            </h2>
+            <p>{leadershipIntro}</p>
           </div>
-          <ul className="about-caps">
-            {services.map((s) => (
-              <li key={s.slug}>
-                <Link to={`/services/${s.slug}`}>
-                  <span className="about-caps__port tabular">{s.port}</span>
-                  <Jack cable={s.cable} size={16} />
-                  <span className="about-caps__name">{s.name}</span>
-                  <ArrowRight width={18} height={18} />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <LeaderCards />
         </div>
       </section>
 
-      <section className="section" aria-labelledby="where-title">
+      <section className="section section--surface" aria-labelledby="deliver-title">
         <div className="container split">
-          <h2 id="where-title">Where we are</h2>
-          <div className="prose">
-            <p>
-              Our head office is on Mannady Street in Parrys, Chennai. We work with businesses across India: remote
-              support reaches you wherever you are, and onsite visits are arranged according to your location.
-            </p>
-            <address className="about-address">
-              {company.address.lines.map((l) => (
-                <span key={l}>{l}</span>
-              ))}
-              <a href={company.phone.href}>{company.phone.display}</a>
-              <a href={company.email.href}>{company.email.display}</a>
-            </address>
-          </div>
+          <h2 id="deliver-title" className="display">
+            How we deliver
+          </h2>
+          <p className="lead deliver__text" data-reveal>
+            We are headquartered in Riyadh. Remote support reaches clients wherever they operate, and onsite work is
+            arranged by location.
+          </p>
         </div>
       </section>
 
-      <CtaBand
-        title="Let’s talk about how your technology should work."
-        text="A short conversation is usually enough to see where we could help, and whether we’re the right fit."
-      />
+      <CtaBand />
     </>
   )
 }

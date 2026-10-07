@@ -1,162 +1,155 @@
 import { Link } from 'react-router'
-import { company } from '../../data/company'
+import { company, cta } from '../../data/company'
 import { getService } from '../../data/services'
 import { industries } from '../../data/industries'
-import { moments, process, commitments } from '../../data/home'
-import { engagementTypes } from '../../data/caseStudies'
+import { moments, engagementTracks, whyExq, process } from '../../data/home'
 import Button from '../../components/common/Button'
-import Figure from '../../components/common/Figure'
-import { ArrowRight, Jack } from '../../components/common/Icons'
-import PatchPanel from '../../components/sections/PatchPanel'
-import ServiceSchedule from '../../components/sections/ServiceSchedule'
+import Rise from '../../components/common/Rise'
+import HeroArt from '../../components/common/HeroArt'
+import { ArrowRight, ServiceIcon } from '../../components/common/Icons'
+import ServiceCards from '../../components/sections/ServiceCards'
+import TechStrip from '../../components/sections/TechStrip'
 import RackElevation from '../../components/sections/RackElevation'
-import CableRun from '../../components/sections/CableRun'
+import ProcessSteps from '../../components/sections/ProcessSteps'
+import ExampleCards from '../../components/sections/ExampleCards'
+import { ClientLogos, Testimonials } from '../../components/sections/Proof'
+import { LeaderTeaser } from '../../components/sections/LeaderCards'
 import CtaBand from '../../components/sections/CtaBand'
-import heroImg from '../../assets/images/home-hero-cabinet-1600.webp'
-import heroImgSm from '../../assets/images/home-hero-cabinet-800.webp'
-import deskImg from '../../assets/images/home-office-desk-1600.webp'
-import deskImgSm from '../../assets/images/home-office-desk-800.webp'
 import './HomePage.css'
 
-const hero = {
-  src: heroImg,
-  srcSm: heroImgSm,
-  width: 1600,
-  height: 1067,
-  alt: 'Engineer reaching into a network cabinet to reseat patch cables',
-  caption: 'Cabinet work in progress',
-}
-
-const desk = {
-  src: deskImg,
-  srcSm: deskImgSm,
-  width: 1600,
-  height: 1067,
-  alt: 'Office employee smiling at her desk with a desktop computer and paperwork',
-  caption: 'The people IT is really for',
-}
-
+// Section order and copy follow Task 11 exactly.
 export default function HomePage() {
   return (
     <>
-      {/* Hero: the cabinet */}
-      <section className="hero band-rack" aria-labelledby="hero-title">
+      {/* Hero */}
+      <section className="hero" aria-labelledby="hero-title">
         <div className="container hero__grid">
           <div className="hero__copy">
-            <h1 id="hero-title" className="hero__title">
-              Technology that works for your business<span className="hero__dot">.</span>
+            <p className="eyebrow">IT services · Riyadh</p>
+            <h1 id="hero-title" className="hero__title display">
+              <Rise
+                lines={['Managed IT, cloud', 'and cybersecurity', 'for businesses that', 'depend on their', 'technology.']}
+                tones={[true, true, false, false, false]}
+              />
             </h1>
-            <p className="hero__lead">
-              exQ Services helps businesses manage IT, cloud, cybersecurity and infrastructure, with practical support
-              built around the way they actually work.
+            <p className="hero__lead lead enter" style={{ '--i': 3 }}>
+              exQ is one accountable team for support, cloud, security, networks and web infrastructure. {company.positioning}
             </p>
-            <div className="btn-row">
-              <Button to="/contact">Get a free IT consultation</Button>
-              <Button to="/services" variant="ghost">
-                Explore our services
+            <div className="btn-row btn-row--stack-mobile enter" style={{ '--i': 4 }}>
+              <Button to={cta.primary.to} arrow>
+                {cta.primary.label}
+              </Button>
+              <Button to="/services" variant="secondary">
+                Explore services
               </Button>
             </div>
-          </div>
-          <div className="hero__panel">
-            <PatchPanel />
-          </div>
-          <div className="hero__photo">
-            <Figure image={hero} priority ratio="5 / 4" sizes="(min-width: 60em) 40vw, 100vw" />
-          </div>
-        </div>
-      </section>
-
-      {/* Who we are, and when people call */}
-      <section className="section intro" aria-labelledby="intro-title">
-        <div className="container">
-          <div className="intro__grid">
-            <h2 id="intro-title" className="intro__statement">
-              From day-to-day support to infrastructure projects, we keep the technology behind your business running
-              properly.
-            </h2>
-            <div className="intro__body prose">
-              <p>
-                We’re a team of <strong>more than 50 IT professionals</strong>. In the past year alone we supported{' '}
-                <strong>over 40 businesses</strong>, looking after their helpdesks, cloud platforms, security, networks
-                and websites.
-              </p>
-              <p>
-                The aim is simple: make IT effortless, secure and scalable, so the people we work with can get on with
-                growing their business.
-              </p>
-              <Link to="/about" className="link-arrow">
-                More about exQ <ArrowRight width={18} height={18} />
-              </Link>
-            </div>
-          </div>
-
-          <div className="moments">
-            <h2 className="moments__title">Businesses usually get in touch when…</h2>
-            <ul className="moments__list">
-              {moments.map((m) => {
-                const s = getService(m.service)
-                return (
-                  <li key={m.text} className="moments__item">
-                    <p>{m.text}</p>
-                    <Link to={`/services/${s.slug}`} className="moments__link">
-                      <Jack cable={s.cable} size={14} />
-                      {s.shortName}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* The six services */}
-      <section className="section sheet" aria-labelledby="services-title">
-        <div className="container">
-          <div className="section-head">
-            <h2 id="services-title">Six services. One team that knows your setup.</h2>
-            <p>
-              Take one service or several. Because the same team covers all six, your network, cloud accounts and
-              security settings get planned together instead of by three different suppliers.
+            <p className="hero__trust enter" style={{ '--i': 5 }}>
+              <span>Remote and onsite</span>
+              <span>Enterprises and growing businesses</span>
+              <span>Documented from day one</span>
             </p>
           </div>
-          <ServiceSchedule />
-          <p className="services__more">
+          <div className="hero__art">
+            <HeroArt />
+          </div>
+        </div>
+      </section>
+
+      {/* Businesses usually get in touch when… */}
+      <section className="section moments" aria-labelledby="moments-title">
+        <div className="container">
+          <div className="section-head">
+            <h2 id="moments-title" className="display">
+              <Rise text="Businesses usually get in touch when…" />
+            </h2>
+          </div>
+          <ul className="moments__list">
+            {moments.map((m, i) => {
+              const s = getService(m.service)
+              return (
+                <li key={m.text} className="moments__item card card--interactive" data-reveal style={{ '--i': i }}>
+                  <p className="moments__text">{m.text}</p>
+                  <Link to={`/services/${s.slug}`} className="moments__link card__link">
+                    <ServiceIcon name={s.icon} size={18} />
+                    {s.name}
+                    <ArrowRight width={16} height={16} />
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section>
+
+      {/* Services: five practice areas */}
+      <section className="section section--surface" aria-labelledby="services-title">
+        <div className="container">
+          <div className="section-head section-head--row">
+            <div>
+              <p className="eyebrow">Services</p>
+              <h2 id="services-title" className="display">
+                <Rise text="Five practice areas. One team that knows your environment." />
+              </h2>
+            </div>
             <Link to="/services" className="link-arrow">
-              Compare the services in detail <ArrowRight width={18} height={18} />
+              All services <ArrowRight width={18} height={18} />
             </Link>
-          </p>
+          </div>
+          <ServiceCards />
+        </div>
+      </section>
+
+      {/* Engagement tracks */}
+      <section className="section" aria-labelledby="tracks-title">
+        <div className="container">
+          <h2 id="tracks-title" className="visually-hidden">
+            Ways to work with exQ
+          </h2>
+          <div className="tracks">
+            {engagementTracks.map((t, i) => (
+              <article key={t.title} className="track card" data-reveal style={{ '--i': i }}>
+                <h3 className="track__title display">{t.title}</h3>
+                <p className="track__text">{t.text}</p>
+                <Button to={cta.primary.to} arrow>
+                  {cta.primary.label}
+                </Button>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Why exQ */}
-      <section className="section why" aria-labelledby="why-title">
-        <div className="container why__grid">
-          <div className="why__photo">
-            <Figure image={desk} ratio="4 / 5" sizes="(min-width: 60em) 38vw, 100vw" />
+      <section className="section section--surface" aria-labelledby="why-title">
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Why exQ</p>
+            <h2 id="why-title" className="display">
+              <Rise text="What working with exQ looks like." />
+            </h2>
           </div>
-          <div className="why__copy">
-            <h2 id="why-title">Not every business needs the same IT setup.</h2>
-            <p className="why__intro">
-              We work around the way your team actually operates. In practice, that comes down to five things.
-            </p>
-            <dl className="values">
-              {company.values.map((v) => (
-                <div key={v.title} className="values__item">
-                  <dt>{v.title}</dt>
-                  <dd>{v.text}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <ul className="values">
+            {whyExq.map((v, i) => (
+              <li key={v.title} className="values__item" data-reveal style={{ '--i': i }}>
+                <span className="values__icon">
+                  <ServiceIcon name={v.icon} size={28} />
+                </span>
+                <h3 className="values__title">{v.title}</h3>
+                <p>{v.text}</p>
+              </li>
+            ))}
+          </ul>
+          <TechStrip className="home-tech" />
         </div>
       </section>
 
-      {/* Capabilities: the rack */}
-      <section className="section band-rack capabilities" aria-labelledby="rack-title">
+      {/* What we look after */}
+      <section className="section" aria-labelledby="rack-title">
         <div className="container">
           <div className="section-head">
-            <h2 id="rack-title">What we look after</h2>
+            <h2 id="rack-title" className="display">
+              <Rise text="What we look after" />
+            </h2>
             <p>
               We install, configure and support the equipment in a typical office cabinet, and the services that live
               outside it.
@@ -166,38 +159,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="section sheet" aria-labelledby="process-title">
+      {/* How we work */}
+      <section className="section section--surface" aria-labelledby="process-title">
         <div className="container">
           <div className="section-head">
-            <h2 id="process-title">How we work</h2>
-            <p>
-              The same run every time, whether it’s a single office network or ongoing support for the whole business.
-            </p>
+            <h2 id="process-title" className="display">
+              <Rise text="How we work" />
+            </h2>
           </div>
-          <CableRun steps={process} />
+          <ProcessSteps steps={process} />
         </div>
       </section>
 
       {/* Industries */}
-      <section className="section industries-strip" aria-labelledby="ind-title">
-        <div className="container split">
-          <div className="section-head industries-strip__head">
-            <h2 id="ind-title">Who we work with</h2>
-            <p>
-              Businesses that depend on their technology but don’t want to run an IT department. What that needs looks
-              different in a clinic than in a warehouse.
-            </p>
+      <section className="section" aria-labelledby="ind-title">
+        <div className="container industries-strip">
+          <div className="section-head">
+            <h2 id="ind-title" className="display">
+              <Rise text="Who we work with." />
+            </h2>
             <Link to="/industries" className="link-arrow">
-              Technology support by industry <ArrowRight width={18} height={18} />
+              IT support by industry <ArrowRight width={18} height={18} />
             </Link>
           </div>
-          <ul className="industries-strip__list">
+          <ul className="chips" data-reveal>
             {industries.map((ind) => (
               <li key={ind.id}>
-                <Link to={`/industries#${ind.id}`}>
+                <Link to={`/industries#${ind.id}`} className="chip">
                   {ind.name}
-                  <ArrowRight width={18} height={18} />
                 </Link>
               </li>
             ))}
@@ -205,53 +194,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Project work */}
-      <section className="section sheet" aria-labelledby="projects-title">
-        <div className="container projects-wrap">
-          <div className="section-head">
-            <h2 id="projects-title">The kind of projects we take on</h2>
-            <p>
-              We only publish case studies our clients have approved, so you won’t find invented success stories here.
-              These are the engagements we do most often; ask us about one like yours and we’ll talk you through it.
-            </p>
-          </div>
-          <ol className="projects">
-            {engagementTypes.map((e) => {
-              const s = getService(e.services[0])
-              return (
-                <li key={e.title} className="projects__row">
-                  <h3 className="projects__title">{e.title}</h3>
-                  <p className="projects__text">{e.text}</p>
-                  <Link to={`/services/${s.slug}`} className="projects__svc">
-                    <Jack cable={s.cable} size={14} />
-                    {s.shortName}
-                  </Link>
-                </li>
-              )
-            })}
-          </ol>
-          <p className="services__more">
+      {/* Example engagements */}
+      <section className="section section--surface" aria-labelledby="examples-title">
+        <div className="container">
+          <div className="section-head section-head--row">
+            <div>
+              <h2 id="examples-title" className="display">
+                <Rise text="Example engagements" />
+              </h2>
+              <p>Typical projects, described honestly. Client case studies appear only with the client’s approval.</p>
+            </div>
             <Link to="/case-studies" className="link-arrow">
-              How we write up our work <ArrowRight width={18} height={18} />
+              Case studies <ArrowRight width={18} height={18} />
             </Link>
-          </p>
+          </div>
+          <ExampleCards />
         </div>
       </section>
 
-      {/* Trust: ways of working instead of borrowed testimonials */}
-      <section className="section commit" aria-labelledby="commit-title">
-        <div className="container">
+      <Testimonials />
+      <ClientLogos />
+
+      {/* Leadership teaser */}
+      <section className="section" aria-labelledby="leaders-title">
+        <div className="container leaders-strip">
           <div className="section-head">
-            <h2 id="commit-title">What working with us looks like</h2>
+            <h2 id="leaders-title" className="display">
+              <Rise text="Led by practitioners." />
+            </h2>
+            <Link to="/about" className="link-arrow">
+              About exQ <ArrowRight width={18} height={18} />
+            </Link>
           </div>
-          <ul className="commit__list">
-            {commitments.map((c) => (
-              <li key={c.title} className="commit__item">
-                <h3>{c.title}</h3>
-                <p>{c.text}</p>
-              </li>
-            ))}
-          </ul>
+          <LeaderTeaser />
         </div>
       </section>
 

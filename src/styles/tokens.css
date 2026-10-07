@@ -1,60 +1,92 @@
+/* Design tokens. Every colour on the site comes from here (Developer Brief, Task 7).
+   Light is the default; [data-theme="dark"] is designed separately, not inverted.
+   Each text/background pair keeps at least 4.5:1 (3:1 for large text, icons and control borders). */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #ffffff;
+  --surface: #f5f7fa;
+  --card: #ffffff;
+  --border: #e3e8ef;
+  --text: #0f1e36;
+  --text-muted: #4a5568;
+  --primary: #2f6fed;
+  --primary-hover: #2459c7;
+  --on-primary: #ffffff;
+  --accent: #14b8a6;
+  --accent-text: #0f766e;
+  --focus: #2f6fed;
+  --error: #c53030;
+  --success: #2f855a;
+
+  /* Derived surfaces */
+  --tint: #edf3fe; /* hero and CTA bands; large text only on top of it */
+  --link: var(--primary);
+  --link-on-surface: var(--primary-hover); /* --primary is 4.2:1 on --surface */
+  --border-strong: #c9d2df; /* control borders: 3:1 against --bg */
+  --header-bg: rgba(255, 255, 255, 0.86);
+  --scrim: rgba(15, 30, 54, 0.45);
+  --shadow-hover: 0 14px 36px -12px rgba(15, 30, 54, 0.16);
+  --shadow-menu: 0 24px 48px -16px rgba(15, 30, 54, 0.18);
+  --img-filter: none;
+  --embed-bg: #ffffff; /* Microsoft Bookings can't be themed (Task 16A) */
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0e1726;
+  --surface: #16223a;
+  --card: #1c2b47;
+  --border: #2a3a57;
+  --text: #e6edf7;
+  --text-muted: #a7b4c8;
+  --primary: #6c9bff;
+  --primary-hover: #8db3ff;
+  --on-primary: #0e1726;
+  --accent: #2dd4bf;
+  --accent-text: #5eead4;
+  --focus: #8db3ff;
+  --error: #fc8181;
+  --success: #68d391;
+
+  --tint: #142039;
+  --link: var(--primary);
+  --link-on-surface: var(--primary-hover);
+  --border-strong: #4a5d80;
+  --header-bg: rgba(14, 23, 38, 0.86);
+  --scrim: rgba(4, 8, 15, 0.6);
+  --shadow-hover: none; /* borders instead of shadows in dark mode */
+  --shadow-menu: none;
+  --img-filter: brightness(0.88);
+  --embed-bg: #ffffff;
+}
+
 :root {
-  /* Surfaces: the cabinet (rack black) and the room it sits in (enclosure grey). */
-  --rack: #141618;
-  --rack-raised: #1c1f22;
-  --rack-panel: #23272b;
-  --rack-line: #353a3f;
-  --rack-ink: #eef0ec;
-  --rack-ink-2: #aeb4b1;
-  --rack-ink-3: #868d8a;
-
-  --ground: #e9ebe7;
-  --sheet: #f6f7f4;
-  --sheet-line: #cfd3ce;
-  --ink: #15181a;
-  --ink-2: #4a5155;
-  --ink-3: #626a6e;
-  --rule: #15181a;
-
-  /* Label tape */
-  --tape: #f7f7f2;
-  --tape-yellow: #f3c316;
-  --tape-ink: #111314;
-
-  /* Brand and the six service cable colours */
-  --teal: #07bfc2;
-  --teal-ink: #04696b;
-  --teal-press: #05a7aa;
-  --cable-teal: #07bfc2;
-  --cable-yellow: #f2c230;
-  --cable-red: #d9433b;
-  --cable-blue: #2f6fd6;
-  --cable-green: #3ba55c;
-  --cable-grey: #9aa2a6;
-
-  --led: #3fd17a;
-  --led-off: #2c3135;
-  --error: #b3261e;
-  --ok: #1f7a45;
-
-  /* Type */
-  --font: 'Amp', 'Archivo Variable', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
-  --fs-display: clamp(2.55rem, 1.35rem + 4.6vw, 5.1rem);
-  --fs-h1: clamp(2.2rem, 1.45rem + 3vw, 3.9rem);
-  --fs-h2: clamp(1.7rem, 1.25rem + 1.7vw, 2.6rem);
-  --fs-h3: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
-  --fs-lead: clamp(1.1rem, 1.02rem + 0.35vw, 1.3rem);
-  --fs-body: 1.0625rem;
-  --fs-small: 0.9rem;
-  --fs-label: 0.78rem;
-  --lh-tight: 1.02;
-  --lh-head: 1.12;
+  /* Type: Plus Jakarta Sans for reading (400/500/600/700); Bricolage Grotesque
+     (800) for display headlines only. */
+  --font: 'Plus Jakarta Sans', 'Plus Jakarta Fallback', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Bricolage Fallback', var(--font);
+  --fs-h1: clamp(2.125rem, 1.6rem + 2.2vw, 3.25rem); /* 34 → 52px */
+  --fs-h2: clamp(1.75rem, 1.5rem + 1.03vw, 2.25rem); /* 28 → 36px */
+  --fs-h3: clamp(1.25rem, 1.15rem + 0.31vw, 1.375rem); /* 20 → 22px */
+  --fs-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fs-body: 1.0625rem; /* 17px */
+  --fs-small: 0.875rem; /* 14px */
+  --fs-label: 0.8125rem;
   --lh-body: 1.6;
+  --lh-head: 1.2;
 
-  /* Space */
-  --gutter: clamp(1rem, 0.5rem + 2.6vw, 2.5rem);
-  --max: 82rem;
+  /* Layout: 1200px content, 112/64px sections, 16px mobile gutter (Task 9). */
+  --content: 75rem;
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+  --section: clamp(4rem, 2rem + 6.9vw, 7rem);
   --measure: 66ch;
+  --header-h: 4.5rem;
+  --header-offset: var(--header-h); /* 0 while the header is tucked away */
+
   --s-1: 0.25rem;
   --s-2: 0.5rem;
   --s-3: 0.75rem;
@@ -62,37 +94,44 @@
   --s-5: 1.5rem;
   --s-6: 2rem;
   --s-7: 3rem;
-  --s-8: 4.5rem;
-  --section: clamp(4rem, 2.6rem + 5.5vw, 8rem);
+  --s-8: 4rem;
 
-  /* Lines: one stroke draws every rule, cable and diagram on the site */
-  --stroke: 2px;
-  --radius: 3px;
+  --radius: 12px; /* cards */
+  --radius-btn: 8px; /* buttons */
+  --radius-pill: 999px;
 
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Motion: ≤300ms, ease-out in, faster out (Task 9). */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --dur-fast: 150ms;
+  --dur: 220ms;
+  --dur-slow: 300ms;
+
+  /* Layers */
+  --z-header: 40;
+  --z-bar: 45;
+  --z-menu: 50;
+  --z-curtain: 60;
+  --z-skip: 100;
 }
 
-/* Metric-matched fallback keeps text from jumping while Archivo loads. */
+[data-header-hidden] {
+  --header-offset: 0px;
+}
+
+/* Metric-matched fallbacks so text doesn't jump while the web fonts load. */
 @font-face {
-  font-family: 'Archivo Fallback';
+  font-family: 'Bricolage Fallback';
   src: local('Arial');
-  size-adjust: 101%;
-  ascent-override: 88%;
+  size-adjust: 86.5%; /* measured: Bricolage 800 caps run 13.5% narrower than Arial */
+  ascent-override: 100%;
+  descent-override: 26%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Fallback';
+  src: local('Arial');
+  size-adjust: 104%;
+  ascent-override: 98%;
   descent-override: 21%;
-}
-
-/* Archivo draws "&" as a stylised "Et" that reads oddly in service names
-   ("Cloud & SaaS"). Borrow a conventional ampersand for that one character. */
-@font-face {
-  font-family: 'Amp';
-  src: local('Helvetica Neue'), local('Arial'), local('Liberation Sans'), local('Roboto');
-  font-weight: 100 550;
-  unicode-range: U+0026;
-}
-
-@font-face {
-  font-family: 'Amp';
-  src: local('Helvetica Neue Bold'), local('HelveticaNeue-Bold'), local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Roboto Bold');
-  font-weight: 551 900;
-  unicode-range: U+0026;
 }

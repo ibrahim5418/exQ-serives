@@ -1,0 +1,37 @@
+.tech__title {
+  margin-bottom: var(--s-4);
+}
+
+/* Logo grid after the reference: cells fill with colour on hover. */
+.tech__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.tech__item {
+  display: grid;
+  place-items: center;
+  min-height: 5.5rem;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: center;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.tech__item:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.tech__item img {
+  max-height: 2rem;
+  width: auto;
+}

@@ -1,46 +1,58 @@
 import LegalPage from './LegalPage'
-import { company } from '../../data/company'
+import { company, legalUpdated } from '../../data/company'
 
 // Plain-language policy covering what this website actually does.
-// Have it reviewed by a legal adviser before relying on it.
+// Have it reviewed by a legal adviser before launch (Task 17).
 const sections = [
   {
     heading: 'Who we are',
     body: [
-      `${company.name} ("exQ", "we", "us") provides IT services from Mannady Street, Parrys, Chennai 600 001, Tamil Nadu, India. You can contact us about this policy at ${company.email.display}.`,
+      `${company.legalName} ("exQ", "we", "us") provides IT services from ${company.location}. Contact us about this policy at ${company.email.display}.`,
     ],
   },
   {
     heading: 'What we collect',
     body: [
-      'We only collect personal information that you choose to give us. Through this website, that means the details you enter in the enquiry form:',
-      ['Your name and, optionally, your company', 'Your email address and, optionally, your phone number', 'The service you are interested in and your message'],
-      'If you call or email us directly, we receive the information you share in that conversation.',
-      'This website does not use analytics, advertising or tracking cookies, and fonts and images are served from our own site.',
+      'We only collect personal information that you choose to give us. Through this website, that means the details you enter in the enquiry form or when booking a consultation:',
+      [
+        'Your name and, optionally, your company',
+        'Your email address and, optionally, your phone number',
+        'The service you are interested in and your message',
+        'The date and time you choose for a consultation, and the details you enter when booking it',
+      ],
+      'If you email, message or call us directly, we receive the information you share in that conversation.',
+      'This website does not use analytics, advertising or tracking cookies. Fonts and images are served from our own site.',
     ],
   },
   {
     heading: 'How we use it',
     body: [
-      'We use your information to reply to your enquiry, to prepare quotes or proposals you ask for, and, if you become a client, to provide and administer our services. We do not sell your information or use it for unrelated marketing.',
+      'We use your information to reply to your enquiry, to arrange and hold consultations you book, to prepare quotes or proposals you ask for, and, if you become a client, to provide and administer our services. We do not sell your information or use it for unrelated marketing.',
     ],
   },
   {
-    heading: 'Who we share it with',
+    heading: 'Services that process your data',
     body: [
-      'Enquiry form submissions are delivered to our inbox through EmailJS, an email delivery service, and stored by our email provider. We may also disclose information where the law requires it. We do not otherwise share your details with third parties without your permission.',
+      'We use a small number of service providers to run this website. Each receives only what it needs:',
+      [
+        'Resend, an email delivery service, delivers enquiry form submissions to our inbox and sends you a confirmation email.',
+        'Cloudflare Turnstile checks that enquiry form submissions come from a person rather than an automated script. It may process technical information such as your IP address and browser details.',
+        'Microsoft Bookings handles consultation bookings made on our booking page, and sends calendar invitations and confirmations.',
+      ],
+      'Your messages are then stored by our email provider. We may also disclose information where the law requires it. We do not otherwise share your details with third parties without your permission.',
+    ],
+  },
+  {
+    heading: 'Your rights and data protection law',
+    body: [
+      `We handle personal data in line with the ${company.dataProtectionLaw}.`,
+      `To access, correct or delete your personal data, email ${company.email.display}.`,
     ],
   },
   {
     heading: 'How long we keep it',
     body: [
       'We keep enquiry correspondence for as long as needed to respond and for reasonable business records. Client records are kept for the duration of our working relationship and any period required by law.',
-    ],
-  },
-  {
-    heading: 'Your choices',
-    body: [
-      `You can ask us to show you the personal information we hold about you, correct it, or delete it where we are not required to keep it. Email ${company.email.display} and we will respond as soon as we reasonably can.`,
     ],
   },
   {
@@ -59,8 +71,8 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      updated="14 September 2026"
-      intro="What happens to the information you share with exQ Services through this website."
+      updated={legalUpdated}
+      intro="How exQ Services collects, uses and protects information submitted through this website."
       sections={sections}
     />
   )
