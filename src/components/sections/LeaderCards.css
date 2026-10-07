@@ -1,0 +1,132 @@
+.leaders {
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 60em) {
+  .leaders {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Initials in accent on surface until real headshots arrive (Task 15). */
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent-text);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  object-fit: cover;
+}
+
+.avatar--lg {
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
+}
+
+.avatar--md {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.125rem;
+}
+
+.leader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.leader__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.leader__name {
+  font-size: var(--fs-h3);
+}
+
+.leader__title {
+  color: var(--accent-text);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.leader__remit {
+  font-weight: 600;
+}
+
+.leader__more {
+  align-self: flex-start;
+  min-height: 2.75rem;
+  margin-top: calc(-1 * var(--s-3));
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@media (max-width: 47.99em) {
+  .leader__bio:not(.is-expanded) .leader__bio-rest {
+    display: none;
+  }
+}
+
+@media (min-width: 48em) {
+  .leader__more {
+    display: none;
+  }
+}
+
+.leader__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.leader__creds {
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+}
+
+.leader-teaser {
+  list-style: none;
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 40em) {
+  .leader-teaser {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.leader-teaser__item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.leader-teaser__name {
+  font-size: 1.125rem;
+}
+
+.leader-teaser__arrow {
+  margin-left: auto;
+  color: var(--primary);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.leader-teaser__item:hover .leader-teaser__arrow {
+  transform: translateX(4px);
+}

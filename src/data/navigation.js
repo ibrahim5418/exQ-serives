@@ -1,23 +1,16 @@
 import { services } from './services'
 
+// Header (Task 10): Services opens the mega menu; Case Studies and Insights
+// join this list only once they have real content.
 export const mainNav = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  {
-    label: 'Services',
-    to: '/services',
-    children: services.map((s) => ({ label: s.name, to: `/services/${s.slug}`, port: s.port, cable: s.cable })),
-  },
+  { label: 'Services', to: '/services', mega: true },
   { label: 'Industries', to: '/industries' },
-  { label: 'Case Studies', to: '/case-studies' },
+  { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ]
 
 export const footerNav = {
-  services: services.map((s) => ({
-    label: s.slug === 'it-support' ? s.name : s.shortName,
-    to: `/services/${s.slug}`,
-  })),
+  services: services.map((s) => ({ label: s.name, to: `/services/${s.slug}` })),
   company: [
     { label: 'About', to: '/about' },
     { label: 'Industries', to: '/industries' },

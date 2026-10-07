@@ -1,0 +1,13 @@
+[
+  { "name": "Microsoft 365", "logo": null, "services": ["cloud-saas", "cybersecurity", "it-support"], "confirmed": false },
+  { "name": "Microsoft Azure", "logo": null, "services": ["cloud-saas", "it-consulting"], "confirmed": false },
+  { "name": "Microsoft Entra ID", "logo": null, "services": ["cybersecurity", "cloud-saas"], "confirmed": false },
+  { "name": "Microsoft Intune", "logo": null, "services": ["it-support", "cybersecurity"], "confirmed": false },
+  { "name": "Windows Server", "logo": null, "services": ["it-support", "network-infrastructure"], "confirmed": false },
+  { "name": "Google Workspace", "logo": null, "services": ["cloud-saas"], "confirmed": false },
+  { "name": "VMware", "logo": null, "services": ["network-infrastructure", "it-consulting"], "confirmed": false },
+  { "name": "Veeam", "logo": null, "services": ["cybersecurity"], "confirmed": false },
+  { "name": "ServiceNow", "logo": null, "services": ["it-support", "it-consulting"], "confirmed": false },
+  { "name": "Cloudflare", "logo": null, "services": ["website-hosting", "cybersecurity"], "confirmed": false },
+  { "name": "SonicWall", "logo": null, "services": ["network-infrastructure", "cybersecurity"], "confirmed": false }
+]

@@ -5,10 +5,11 @@ import './LegalPage.css'
 export default function LegalPage({ title, updated, intro, sections }) {
   return (
     <>
-      <PageHeader crumbs={[{ label: title }]} title={title} lead={intro} />
+      <PageHeader crumbs={[{ label: title }]} title={title} lead={intro}>
+        <p className="legal__updated">Last updated {updated}</p>
+      </PageHeader>
       <div className="section section--tight">
         <div className="container legal">
-          <p className="legal__updated">Last updated {updated}</p>
           {sections.map((s) => (
             <section key={s.heading} className="legal__section">
               <h2>{s.heading}</h2>

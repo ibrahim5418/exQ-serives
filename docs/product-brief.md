@@ -1,59 +1,56 @@
 # Product brief
 
-## Platform
+The authoritative requirements are in Jamal Ahamed's *exQ Website — Developer Brief (Final)*, 29 September 2026. This file summarises what the code relies on.
 
-web
+## Platform and stack
 
-## Stack
-
-Vite + React 18 + React Router (user's choice, 2026-09-14). Replaces the previous static Bootstrap template at https://exq.services (Bootstrap, AOS, Swiper, GLightbox, Isotope, PureCounter, EmailJS). No prior React code exists; the project folder was empty. Plain CSS with design tokens; no UI framework.
+Web. Vite + React 19 + React Router 7, every route prerendered to static HTML (`scripts/prerender.js`) and hydrated. Plain CSS with design tokens; no UI framework. Contact form posts to a serverless function (`api/contact.js`) that sends through Resend.
 
 ## Users
 
-Business owners, managers and decision-makers at small and mid-sized businesses across India who depend on everyday technology (devices, email, cloud tools, networks, websites) but do not run a large in-house IT department. They arrive either with a live problem (something is broken or insecure) or with a planned change (new office, cloud move, growing headcount) and want to judge quickly whether EXQ is a credible, safe pair of hands.
-
-## Product Purpose
-
-EXQ Services is an IT services company. It helps businesses manage, maintain, secure and improve the technology they depend on every day, as a long-term technology partner rather than a one-off repair shop or a web agency. The website's job: make clear in seconds who EXQ is, what it provides, who it helps, why it can be trusted, and how to get in touch; and generate qualified enquiries.
+Owners, managers and IT leads at enterprises and growing businesses who depend on their technology. They arrive with a live problem or a planned change and want to judge quickly whether exQ is a credible, safe pair of hands.
 
 ## Positioning
 
-A partnership-first IT team that covers the whole everyday stack (support, cloud and SaaS, security, network and infrastructure, web hosting, consulting) with practical, tailored work built around how each client actually operates, not one-size-fits-all packages.
+exQ is one accountable team for the technology behind a business: helpdesk, cloud platforms, security, networks and web infrastructure. Headquartered in Riyadh, supporting clients locally and internationally.
 
-## Operating Context
+## Fixed facts (brief section 1)
 
-- Six service lines: IT Support & Managed Services; Cloud & SaaS; Cybersecurity; Network & Infrastructure; Website & Hosting; IT Consulting & Special Projects.
-- Support is delivered remotely and onsite. Clients and onsite work are across India; head office is in Chennai.
-- Enquiries arrive through the website contact form (EmailJS), phone and email.
+- Brand: exQ Services (short form exQ). Legal name (footer, Privacy, Terms only): Exq IT Consulting and Services.
+- Domain: https://exq.services
+- Email (only public address, and form recipient): info@exq.services
+- Phone: +966 50 094 7061 (`tel:+966500947061`), shown only in the footer and on the Contact page.
+- WhatsApp: https://wa.me/966500947061 (Jamal to confirm the number).
+- Location: Riyadh, Saudi Arabia (city only).
+- Booking: Microsoft Bookings, embedded on `/book`.
+- Primary CTA "Book a free consultation" → `/book`; secondary "Send an enquiry" → `/contact`.
+- Founder Jamal Ahamed; Co-founder Abdul Hadhi Asif.
+- Governing law: Kingdom of Saudi Arabia. Data protection: Saudi PDPL.
+- Contact priority: email and the form, then booking, then WhatsApp, then phone.
 
-## Capabilities and Constraints
+All of these live in `src/data/company.js`.
 
-- Contact form sends through EmailJS: public key `g_ZlobahDenG2yrCY`, service `service_m8bov1a`, template `template_dvz3yys` (existing template fields: name, email, subject, message).
-- Do not claim 24/7 SOC monitoring, uptime guarantees, SLAs, certifications, partnerships or response-time guarantees; none are confirmed.
-- Industries: no confirmed specialisations. Write "technology support for…" rather than client claims.
+## Practice areas
 
-## Brand Commitments
+Five practice areas over six service pages (URLs unchanged): Managed IT & Support (`it-support`), Cloud & Digital Workplace (`cloud-saas`), Cybersecurity (`cybersecurity`), Network & Infrastructure (`network-infrastructure`), IT Consulting & Projects (`it-consulting`, with Web Infrastructure `website-hosting` as its second link).
 
-- Name: "exQ Services" (wordmark "exQ" followed by a teal full stop). Brand teal `#07bfc2` from the live site.
-- Voice: plain, practical, confident business language; no buzzwords or hype. Example lines supplied by the owner: "Your team should be working on the business, not waiting for the network to come back." / "Not every business needs the same IT setup. We work around the way your team actually operates."
-- Owner explicitly rejects AI-template tells: gradient washes, glassmorphism, glows, blobs, card-grid monotony, fake stats.
+## Never on the site
 
-## Evidence on Hand
+- Indian addresses, +91 numbers, sales@ addresses, staff or client counts.
+- Founders' LinkedIn or other personal profiles, or their current or past employers.
+- Invented clients, testimonials, logos, results, partner badges or certifications exQ does not hold.
+- "Partners" wording for technologies: the strip is "Technologies we work with" and shows only entries Jamal has confirmed.
 
-- Verified: team of 50+ IT professionals; supported 40+ businesses in the past year (live site copy).
-- Verified mission: make IT effortless, secure and scalable so clients can focus on growth.
-- Verified values: partnership-first; reliable, proactive support; tailored solutions; security and scalability; people-centred service.
-- Contact: Mannady Street, Parrys, Chennai 600001, Tamil Nadu, India · +91 96004 21207 · sales@exq.services.
-- Absent, must not be fabricated: testimonials (live site ones are Lorem Ipsum), client names or logos, case studies, project outcomes, awards, certifications, partner badges. Live-site counters (clients, projects, hours) had no real values.
-- Imagery: no real EXQ photography. Original images generated for this build, labelled as illustrative.
+Testimonials, client logos and case studies render from JSON in `src/data/content/` and show nothing until real, approved entries exist. The three example engagements always carry the label "Example engagement: shows a typical project, not a specific client."
 
-## Product Principles
+## Still to come from Jamal
 
-1. Clarity over cleverness: a visitor should know what EXQ does within one screen.
-2. Truth over polish: only verified facts; empty slots stay honest rather than filled with invention.
-3. Business outcomes first, technical detail second: write for the person who signs off, not the engineer.
-4. Partnership, not transaction: every page points toward an ongoing relationship and a conversation.
+- Confirmation of the WhatsApp number.
+- The confirmed "Technologies we work with" list (flip `confirmed` in `src/data/content/technologies.json`).
+- Matching headshots (set `photo` in `src/data/team.js`), and Abdul's approval of his bio.
+- Logo files (light and dark) and a 1200 × 630 share image (replace the generated ones in `public/`).
+- Legal review of Privacy and Terms, and the launch date for "Last updated" (`legalUpdated` in `src/data/company.js`).
 
-## Accessibility & Inclusion
+## Accessibility
 
-WCAG 2.2 AA: keyboard access, visible focus, labelled form fields, sufficient contrast, reduced-motion support, meaningful alt text.
+WCAG 2.2 AA: keyboard access, 2px focus ring, one H1 per page, labelled fields with announced errors, 4.5:1 contrast in both themes, reduced-motion support.

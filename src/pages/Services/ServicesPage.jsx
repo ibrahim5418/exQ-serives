@@ -1,23 +1,12 @@
 import { Link } from 'react-router'
-import { services } from '../../data/services'
+import { practiceAreas } from '../../data/services'
+import { cta } from '../../data/company'
 import PageHeader from '../../components/common/PageHeader'
-import Figure from '../../components/common/Figure'
-import Tape from '../../components/common/Tape'
 import Button from '../../components/common/Button'
-import { Jack } from '../../components/common/Icons'
+import { ArrowRight, ServiceIcon } from '../../components/common/Icons'
+import TechStrip from '../../components/sections/TechStrip'
 import CtaBand from '../../components/sections/CtaBand'
-import patchImg from '../../assets/images/services-patch-panel-1600.webp'
-import patchImgSm from '../../assets/images/services-patch-panel-800.webp'
 import './ServicesPage.css'
-
-const patch = {
-  src: patchImg,
-  srcSm: patchImgSm,
-  width: 1067,
-  height: 1600,
-  alt: 'Close-up of a server rack with neatly routed teal patch cables',
-  caption: 'Every run labelled and traceable',
-}
 
 const fields = [
   ['problem', 'The problem'],
@@ -31,22 +20,22 @@ export default function ServicesPage() {
     <>
       <PageHeader
         crumbs={[{ label: 'Services' }]}
-        title="IT services for businesses that depend on their technology"
-        lead="From the helpdesk to the network cabinet, each service below solves a specific business problem. Use one, or let us look after the lot."
-        aside={<Figure image={patch} priority ratio="4 / 3" sizes="(min-width: 60em) 40vw, 100vw" />}
+        title="IT services"
+        tagline="One accountable team for managed IT, cloud, security, networks and consulting."
+        lead="Each service below solves a specific business problem. Use one, or let us look after the lot: the same team plans your network, cloud accounts and security together."
       >
-        <Button to="/contact">Get a free IT consultation</Button>
+        <Button to={cta.primary.to}>{cta.primary.label}</Button>
+        <Button to={cta.secondary.to} variant="secondary">
+          {cta.secondary.label}
+        </Button>
       </PageHeader>
 
-      <nav className="svc-index" aria-label="Services on this page">
+      <nav className="svc-index" aria-label="Practice areas on this page">
         <div className="container">
           <ul>
-            {services.map((s) => (
-              <li key={s.slug}>
-                <a href={`#${s.slug}`}>
-                  <Jack cable={s.cable} size={14} />
-                  {s.shortName}
-                </a>
+            {practiceAreas.map((a) => (
+              <li key={a.id}>
+                <a href={`#${a.id}`}>{a.label}</a>
               </li>
             ))}
           </ul>
@@ -54,34 +43,45 @@ export default function ServicesPage() {
       </nav>
 
       <div className="section section--tight">
-        <div className="container">
-          {services.map((s) => (
-            <article key={s.slug} id={s.slug} className="svc-entry" tabIndex={-1} aria-labelledby={`${s.slug}-title`}>
-              <div className="svc-entry__head">
-                <h2 id={`${s.slug}-title`} className="svc-entry__title">
-                  {s.name}
-                </h2>
-                <div className="svc-entry__meta">
-                  <Tape>
-                    <Jack cable={s.cable} size={12} />
-                    Port {s.port}
-                  </Tape>
-                  <Link to={`/services/${s.slug}`} className="link-arrow">
-                    What’s included
-                    <span className="visually-hidden"> in {s.name}</span>
-                  </Link>
-                </div>
-              </div>
-              <dl className="svc-entry__fields">
-                {fields.map(([key, label]) => (
-                  <div key={key} className={`svc-entry__field svc-entry__field--${key}`}>
-                    <dt>{label}</dt>
-                    <dd>{s.overview[key]}</dd>
-                  </div>
+        <div className="container svc-areas">
+          {practiceAreas.map((area) => (
+            <section key={area.id} id={area.id} className="svc-area" tabIndex={-1} aria-labelledby={`${area.id}-title`}>
+              <h2 id={`${area.id}-title`} className="svc-area__title display">
+                {area.label}
+              </h2>
+              <div className="svc-area__list">
+                {area.services.map((s) => (
+                  <article key={s.slug} className="svc-entry card" data-reveal aria-labelledby={`${s.slug}-title`}>
+                    <div className="svc-entry__head">
+                      <span className="icon-tile">
+                        <ServiceIcon name={s.icon} />
+                      </span>
+                      <div>
+                        <p className="label tabular">Service {s.number}</p>
+                        <h3 id={`${s.slug}-title`} className="svc-entry__title">
+                          {s.name}
+                        </h3>
+                      </div>
+                      <Link to={`/services/${s.slug}`} className="link-arrow svc-entry__link">
+                        What’s included
+                        <span className="visually-hidden"> in {s.name}</span>
+                        <ArrowRight width={18} height={18} />
+                      </Link>
+                    </div>
+                    <dl className="svc-entry__fields">
+                      {fields.map(([key, label]) => (
+                        <div key={key} className="svc-entry__field">
+                          <dt>{label}</dt>
+                          <dd>{s.overview[key]}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </article>
                 ))}
-              </dl>
-            </article>
+              </div>
+            </section>
           ))}
+          <TechStrip />
         </div>
       </div>
 

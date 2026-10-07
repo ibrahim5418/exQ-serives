@@ -1,35 +1,40 @@
 import { Link } from 'react-router'
+import Rise from './Rise'
 import './PageHeader.css'
 
-// Dark header band for inner pages: breadcrumb, H1, lead, optional actions
-// and an optional aside (photo or panel).
-export default function PageHeader({ title, lead, crumbs = [], children, aside, cable, className = '' }) {
+// Inner-page header, after the reference: breadcrumb, a large uppercase H1 on
+// the left; tagline, lead and actions on the right.
+export default function PageHeader({ title, tagline, lead, crumbs = [], children, className = '' }) {
   return (
-    <header
-      className={`page-header band-rack ${aside ? 'page-header--aside' : ''} ${className}`.trim()}
-      style={cable ? { '--header-cable': `var(--cable-${cable})` } : undefined}
-    >
-      <div className="container page-header__inner">
-        <div className="page-header__main">
-          {crumbs.length > 0 && (
-            <nav aria-label="Breadcrumb" className="crumbs">
-              <ol>
-                <li>
-                  <Link to="/">Home</Link>
+    <header className={`page-header ${className}`.trim()}>
+      <div className="container">
+        {crumbs.length > 0 && (
+          <nav aria-label="Breadcrumb" className="crumbs page-header__crumbs">
+            <ol>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              {crumbs.map((c) => (
+                <li key={c.label}>
+                  {c.to ? <Link to={c.to}>{c.label}</Link> : <span aria-current="page">{c.label}</span>}
                 </li>
-                {crumbs.map((c) => (
-                  <li key={c.label}>{c.to ? <Link to={c.to}>{c.label}</Link> : <span aria-current="page">{c.label}</span>}</li>
-                ))}
-              </ol>
-            </nav>
+              ))}
+            </ol>
+          </nav>
+        )}
+        <div className="page-header__grid">
+          <h1 className="page-header__title display">
+            <Rise text={title} />
+          </h1>
+          {(tagline || lead || children) && (
+            <div className="page-header__side enter" style={{ '--i': 2 }}>
+              {tagline && <p className="page-header__tagline display">{tagline}</p>}
+              {lead && <p className="lead">{lead}</p>}
+              {children && <div className="btn-row btn-row--stack-mobile">{children}</div>}
+            </div>
           )}
-          <h1 className="page-header__title">{title}</h1>
-          {lead && <p className="lead page-header__lead">{lead}</p>}
-          {children && <div className="page-header__actions">{children}</div>}
         </div>
-        {aside && <div className="page-header__aside">{aside}</div>}
       </div>
-      {cable && <span className="page-header__run" aria-hidden="true" />}
     </header>
   )
 }

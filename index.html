@@ -1,32 +1,30 @@
 <!doctype html>
-<html lang="en-IN">
+<html lang="en">
   <head>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('exq-theme');
+          document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#141618" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <script>
+      (function (d) {
+        d.classList.add('js');
+        if (d.getAttribute('data-theme') === 'dark') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0E1726');
+        }
+      })(document.documentElement);
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!--app-head-->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "exQ Services",
-        "url": "https://exq.services",
-        "description": "IT support, managed services, cloud and SaaS, cybersecurity, network infrastructure, website hosting and IT consulting for businesses across India.",
-        "telephone": "+91 96004 21207",
-        "email": "sales@exq.services",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Mannady Street, Parrys",
-          "addressLocality": "Chennai",
-          "postalCode": "600001",
-          "addressRegion": "Tamil Nadu",
-          "addressCountry": "IN"
-        },
-        "areaServed": "IN"
-      }
-    </script>
   </head>
   <body>
     <div id="root"><!--app-html--></div>

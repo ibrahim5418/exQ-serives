@@ -1,13 +1,13 @@
 import LegalPage from './LegalPage'
-import { company } from '../../data/company'
+import { company, legalUpdated } from '../../data/company'
 
 // Website terms of use. Service agreements with clients are separate documents.
-// Have these reviewed by a legal adviser before relying on them.
+// Have these reviewed by a legal adviser before launch (Task 17).
 const sections = [
   {
     heading: 'About these terms',
     body: [
-      `These terms apply to your use of the ${company.name} website at exq.services. By using the site, you agree to them. Work we carry out for clients is covered by separate written agreements, not by these terms.`,
+      `These terms apply to your use of the ${company.name} website at exq.services, operated by ${company.legalName} from ${company.location}. By using the site, you agree to them. Work we carry out for clients is covered by separate written agreements, not by these terms.`,
     ],
   },
   {
@@ -19,13 +19,13 @@ const sections = [
   {
     heading: 'Intellectual property',
     body: [
-      `The text, design and exQ name and wordmark on this site belong to ${company.name}. Photographs are licensed stock images used for illustration. You may share links to our pages, but please do not copy or republish substantial parts of the site without permission.`,
+      `The text, design, illustrations and the exQ name and wordmark on this site belong to ${company.legalName}. You may share links to our pages, but please do not copy or republish substantial parts of the site without permission.`,
     ],
   },
   {
-    heading: 'Enquiries',
+    heading: 'Enquiries and bookings',
     body: [
-      'Sending an enquiry through this website does not create a contract or oblige either of us to anything. Any work is agreed separately, in writing.',
+      'Sending an enquiry or booking a consultation through this website does not create a contract or oblige either of us to anything. Any work is agreed separately, in writing.',
     ],
   },
   {
@@ -40,7 +40,7 @@ const sections = [
   },
   {
     heading: 'Governing law',
-    body: ['These terms are governed by the laws of India.'],
+    body: [`These terms are governed by the laws of ${company.governingLaw}.`],
   },
   {
     heading: 'Contact',
@@ -52,8 +52,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Service"
-      updated="14 September 2026"
-      intro="The terms that apply when you use the exQ Services website."
+      updated={legalUpdated}
+      intro="The terms that apply to using the exQ Services website."
       sections={sections}
     />
   )

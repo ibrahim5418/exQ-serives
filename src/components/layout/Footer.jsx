@@ -20,10 +20,10 @@ function Column({ title, links }) {
   )
 }
 
+// Four columns (Task 10): Services · Company · Legal · Contact.
 export default function Footer() {
-  const year = new Date().getFullYear()
   return (
-    <footer className="site-footer band-rack">
+    <footer className="site-footer">
       <div className="container">
         <div className="footer__grid">
           <div className="footer__about">
@@ -31,8 +31,7 @@ export default function Footer() {
               <Wordmark />
             </Link>
             <p>
-              exQ Services helps businesses manage, maintain, secure and improve the technology they use every day, from
-              the helpdesk to the network cabinet.
+              Managed IT, cloud, cybersecurity and networks from one accountable team. {company.positioning}
             </p>
           </div>
 
@@ -40,34 +39,27 @@ export default function Footer() {
           <Column title="Company" links={footerNav.company} />
           <Column title="Legal" links={footerNav.legal} />
 
-          <div className="footer__col footer__contact">
+          <div className="footer__col">
             <h2 className="footer__heading">Contact</h2>
             <ul className="footer__links footer__links--icons">
               <li>
-                <Pin width={18} height={18} />
-                <address>
-                  Mannady Street
-                  <br />
-                  Chennai, Tamil Nadu, India
-                </address>
+                <Mail width={18} height={18} />
+                <a href={company.email.href}>{company.email.display}</a>
               </li>
               <li>
                 <Phone width={18} height={18} />
                 <a href={company.phone.href}>{company.phone.display}</a>
               </li>
               <li>
-                <Mail width={18} height={18} />
-                <a href={company.email.href}>{company.email.display}</a>
+                <Pin width={18} height={18} />
+                <span>{company.location}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="footer__base">
-          <p>
-            © {year} {company.name}. All rights reserved.
-          </p>
-          <p>Mannady Street, Parrys, Chennai 600 001</p>
+          <p>{company.copyright}</p>
         </div>
       </div>
     </footer>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "office-network",
+    "title": "New office network",
+    "service": "network-infrastructure",
+    "situation": "A company moving into a new office needs cabling, Wi-Fi, firewall and CCTV working on day one.",
+    "work": "Site survey, network design, installation, testing and labelling.",
+    "receive": "Network diagram, cabling schedule, configuration backups and a handover session."
+  },
+  {
+    "id": "microsoft-365",
+    "title": "Move to Microsoft 365",
+    "service": "cloud-saas",
+    "situation": "Email and files are spread across old servers and personal accounts.",
+    "work": "Migration plan, mail/calendar/file migration, multi-factor sign-in, licence clean-up and staff guidance.",
+    "receive": "Migration plan, user and licence register and admin handover."
+  },
+  {
+    "id": "security-baseline",
+    "title": "Security baseline",
+    "service": "cybersecurity",
+    "situation": "A client asks how the business protects their data, and there is no clear answer.",
+    "work": "Security assessment, multi-factor sign-in, endpoint protection, access review and a backup restore test.",
+    "receive": "Written risk report, remediation record and a tested backup."
+  }
+]

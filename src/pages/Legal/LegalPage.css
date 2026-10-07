@@ -3,32 +3,37 @@
 }
 
 .legal__updated {
-  font-size: 0.9rem;
-  color: var(--ink-3);
-  padding-bottom: 1.5rem;
-  border-bottom: var(--stroke) solid var(--rule);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
-.legal__section {
-  padding-top: 2.25rem;
+.legal__section + .legal__section {
+  margin-top: var(--s-6);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
 }
 
 .legal__section h2 {
-  font-size: 1.35rem;
-  margin-bottom: 0.8rem;
+  font-size: var(--fs-h3);
+  margin-bottom: var(--s-3);
 }
 
 .legal__section p,
 .legal__section li {
-  color: var(--ink-2);
+  color: var(--text-muted);
   max-width: var(--measure);
 }
 
+.legal__section p + p {
+  margin-top: 1em;
+}
+
 .legal__section ul {
-  margin-top: 0.8rem;
+  margin-top: var(--s-3);
   padding-left: 1.2rem;
   display: grid;
-  gap: 0.4rem;
+  gap: var(--s-2);
 }
 
 .legal__section ul + p {

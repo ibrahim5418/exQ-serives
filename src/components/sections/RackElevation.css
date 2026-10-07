@@ -1,101 +1,114 @@
+/* The office cabinet, drawn with theme tokens so it works in light and dark. */
 .rack {
-  --unit-h: 3.1rem;
-  --rail: 1.1rem;
-  --rack-w: 23rem;
+  --unit-h: 2.75rem;
+  display: grid;
+  gap: var(--s-7);
+}
+
+@media (min-width: 64em) {
+  .rack {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: start;
+  }
 }
 
 .rack__units {
   list-style: none;
   display: grid;
-  gap: 1.25rem;
+  gap: var(--s-4);
 }
 
 .rack__row {
   display: grid;
-  gap: 0.6rem;
+  gap: var(--s-2);
 }
 
 .rack__unit {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: var(--s-3);
   min-height: calc(var(--u) * var(--unit-h));
-  padding: 0 0.8rem 0 0.7rem;
-  background: #272b2f;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  border-bottom: 1px solid #0a0b0c;
-  border-radius: 1px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface);
 }
 
 .rack__u {
-  font-size: 0.66rem;
+  flex: none;
+  width: 1.75rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  font-stretch: 78%;
-  color: var(--rack-ink-3);
-  width: 1.6rem;
-  flex: none;
-}
-
-.rack__unit .tape {
-  font-size: 0.66rem;
-  flex: none;
+  color: var(--text-muted);
 }
 
 /* Front-panel details, one per kind of equipment */
 .rack__detail {
   flex: 1;
   align-self: stretch;
-  margin-block: 0.7rem;
-  border-radius: 1px;
+  margin-block: 0.75rem;
+  border-radius: 2px;
+  --port: var(--border-strong);
 }
 
-.rack__unit--switch .rack__detail,
-.rack__unit--patch-panel .rack__detail {
-  background:
-    repeating-linear-gradient(90deg, #0b0d0e 0 0.62rem, transparent 0.62rem 0.82rem) 0 0 / 100% 42% no-repeat,
-    repeating-linear-gradient(90deg, #0b0d0e 0 0.62rem, transparent 0.62rem 0.82rem) 0 100% / 100% 42% no-repeat;
+.rack__led {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+  animation: led 4.8s steps(1, end) infinite;
+  animation-delay: calc(var(--i, 0) * -0.7s);
 }
 
-.rack__unit--patch-panel .rack__detail {
-  margin-block: 1.1rem;
+/* Network activity: brief, irregular flickers, like a real cabinet. */
+@keyframes led {
+  0%, 100% { opacity: 1; }
+  8% { opacity: 0.35; }
+  10% { opacity: 1; }
+  41% { opacity: 0.35; }
+  43% { opacity: 1; }
+  45% { opacity: 0.4; }
+  47% { opacity: 1; }
+  76% { opacity: 0.35; }
+  78% { opacity: 1; }
+}
+
+.rack__unit--managed .rack__detail,
+.rack__unit--firewall .rack__detail {
   background:
-    repeating-linear-gradient(90deg, #0b0d0e 0 0.7rem, transparent 0.7rem 0.95rem) 0 0 / 100% 40% no-repeat,
-    repeating-linear-gradient(
-        90deg,
-        var(--cable-teal) 0 0.7rem,
-        transparent 0.7rem 0.95rem,
-        var(--cable-blue) 0.95rem 1.65rem,
-        transparent 1.65rem 1.9rem,
-        var(--cable-yellow) 1.9rem 2.6rem,
-        transparent 2.6rem 2.85rem
-      )
-      0 100% / 100% 40% no-repeat;
-  opacity: 0.9;
+    repeating-linear-gradient(90deg, var(--port) 0 0.6rem, transparent 0.6rem 0.8rem) 0 0 / 100% 40% no-repeat,
+    repeating-linear-gradient(90deg, var(--port) 0 0.6rem, transparent 0.6rem 0.8rem) 0 100% / 100% 40% no-repeat;
 }
 
 .rack__unit--firewall .rack__detail {
-  background:
-    radial-gradient(circle, var(--led) 0 0.17rem, transparent 0.19rem) 0 50% / 0.8rem 0.8rem no-repeat,
-    repeating-linear-gradient(90deg, #0b0d0e 0 0.7rem, transparent 0.7rem 0.95rem) 1.3rem 50% / 4.6rem 55% no-repeat;
+  background-size: 40% 40%;
 }
 
-.rack__unit--wi-fi .rack__detail {
+.rack__unit--patch .rack__detail {
+  margin-block: 1.1rem;
   background:
-    radial-gradient(circle, var(--led) 0 0.17rem, transparent 0.19rem) 0 50% / 0.8rem 0.8rem repeat-x;
-  max-width: 3.2rem;
+    repeating-linear-gradient(90deg, var(--port) 0 0.65rem, transparent 0.65rem 0.9rem) 0 0 / 100% 38% no-repeat,
+    repeating-linear-gradient(90deg, var(--primary) 0 0.65rem, transparent 0.65rem 0.9rem) 0 100% / 100% 38% no-repeat;
 }
 
-.rack__unit--nvr-cctv .rack__detail,
-.rack__unit--server-nas .rack__detail {
-  background: repeating-linear-gradient(90deg, #1b1e21 0 2.4rem, #0d0f10 2.4rem 2.55rem);
-  box-shadow: inset 0 0 0 1px #0d0f10;
+.rack__unit--wireless .rack__detail {
+  max-width: 4rem;
+  background: radial-gradient(circle, var(--accent) 0 0.16rem, transparent 0.18rem) 0 50% / 0.8rem 0.8rem repeat-x;
 }
 
-.rack__unit--ups .rack__detail {
+.rack__unit--cctv .rack__detail,
+.rack__unit--storage .rack__detail {
+  background: repeating-linear-gradient(90deg, var(--card) 0 2.25rem, var(--border-strong) 2.25rem 2.35rem);
+  border: 1px solid var(--border-strong);
+}
+
+.rack__unit--power .rack__detail {
   background:
-    linear-gradient(#0e1a14, #0e1a14) 0 50% / 3rem 1.4rem no-repeat,
-    repeating-linear-gradient(90deg, transparent 0 0.3rem, #15181a 0.3rem 0.55rem) 4rem 0 / calc(100% - 4rem) 100% no-repeat;
+    linear-gradient(var(--port), var(--port)) 0 50% / 2.75rem 1.25rem no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 0.3rem, var(--border) 0.3rem 0.55rem) 3.75rem 0 / calc(100% - 3.75rem) 100% no-repeat;
 }
 
 .rack__leader {
@@ -103,131 +116,102 @@
 }
 
 .rack__note {
-  font-size: 0.97rem;
-  line-height: 1.45;
-  color: var(--rack-ink-2);
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 .rack__name {
-  color: var(--rack-ink);
-  font-weight: 680;
+  color: var(--text);
 }
 
 .rack__svc {
-  color: var(--teal);
   font-weight: 600;
   white-space: nowrap;
-}
-
-/* Outside the cabinet */
-.rack__off {
-  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
-  padding-top: 1.5rem;
-  border-top: var(--stroke) solid var(--rack-line);
-}
-
-.rack__off-title {
-  font-size: 1.05rem;
-  margin-bottom: 1rem;
-}
-
-.rack__off-list {
-  list-style: none;
-  display: grid;
-  gap: 0.75rem 2rem;
-}
-
-.rack__off-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.rack__off-list a {
-  color: var(--rack-ink);
   text-decoration: none;
 }
 
-.rack__off-list a:hover {
+.rack__svc:hover {
   text-decoration: underline;
 }
 
-@media (min-width: 40em) {
-  .rack__off-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* Drawn as a proper elevation: rails, touching units, leader lines */
-@media (min-width: 56em) {
+@media (min-width: 48em) {
   .rack__units {
-    position: relative;
     gap: 0;
-    padding-block: 0.6rem;
-  }
-
-  .rack__units::before,
-  .rack__units::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: var(--rail);
-    background:
-      linear-gradient(90deg, #2d3236 0 0.3rem, transparent 0.3rem 0.8rem, #2d3236 0.8rem),
-      repeating-linear-gradient(180deg, #2d3236 0 0.42rem, #060707 0.42rem 0.82rem);
-    border-radius: 1px;
-  }
-
-  .rack__units::before {
-    left: 0;
-  }
-
-  .rack__units::after {
-    left: calc(var(--rack-w) - var(--rail));
+    padding: var(--s-2) 0;
+    border-left: 2px solid var(--border-strong);
   }
 
   .rack__row {
-    grid-template-columns: var(--rack-w) 4.5rem minmax(0, 36rem);
-    gap: 0;
+    grid-template-columns: 19rem 2.5rem minmax(0, 1fr);
     align-items: center;
+    gap: 0;
+    padding: 0.2rem 0 0.2rem var(--s-2);
   }
 
   .rack__unit {
-    align-self: stretch;
-    margin-inline: var(--rail);
+    border-radius: 3px;
   }
 
   .rack__leader {
     display: block;
+    height: 1px;
+    background: var(--border-strong);
     position: relative;
-    height: var(--stroke);
-    margin-inline: 0.6rem 0.9rem;
-    background: var(--rack-ink-3);
   }
 
-  .rack__leader::before {
+  .rack__leader::after {
     content: '';
     position: absolute;
-    left: -0.3rem;
-    top: -0.25rem;
-    width: 0.55rem;
-    height: 0.55rem;
+    right: 0;
+    top: -3px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: var(--rack-ink-3);
+    background: var(--primary);
   }
 
   .rack__note {
-    padding-block: 0.3rem;
+    padding-left: var(--s-3);
+    font-size: 0.9375rem;
   }
 
-  .rack__off-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .rack__row:hover .rack__unit {
+    border-color: var(--primary);
   }
 }
 
-@media (min-width: 75em) {
-  .rack {
-    --rack-w: 26rem;
-  }
+.rack__off-title {
+  margin-bottom: var(--s-3);
+  font-size: 1.125rem;
+}
+
+.rack__off-list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.rack__off-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  min-height: 3rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.rack__off-list a svg {
+  flex: none;
+  color: var(--primary);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.rack__off-list a:hover {
+  color: var(--primary);
+}
+
+.rack__off-list a:hover svg {
+  transform: translateX(4px);
 }

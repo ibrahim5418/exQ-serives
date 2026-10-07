@@ -1,0 +1,42 @@
+.nf-list {
+  list-style: none;
+  display: grid;
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 48em) {
+  .nf-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s-6);
+  }
+}
+
+.nf-list a {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 3.25rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nf-list a svg:first-child {
+  color: var(--accent-text);
+}
+
+.nf-list a svg:last-child {
+  margin-left: auto;
+  color: var(--primary);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.nf-list a:hover {
+  color: var(--primary);
+}
+
+.nf-list a:hover svg:last-child {
+  transform: translateX(4px);
+}

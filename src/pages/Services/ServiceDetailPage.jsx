@@ -1,15 +1,27 @@
 import { Link, useParams } from 'react-router'
-import { company } from '../../data/company'
+import { cta } from '../../data/company'
 import { services, getService } from '../../data/services'
 import PageHeader from '../../components/common/PageHeader'
-import Figure from '../../components/common/Figure'
 import Button from '../../components/common/Button'
 import FaqList from '../../components/common/FaqList'
-import { ArrowRight, Jack } from '../../components/common/Icons'
-import CableRun from '../../components/sections/CableRun'
+import { ArrowRight, Check, ServiceIcon } from '../../components/common/Icons'
+import ProcessSteps from '../../components/sections/ProcessSteps'
+import TechStrip from '../../components/sections/TechStrip'
+import ExampleCards from '../../components/sections/ExampleCards'
 import CtaBand from '../../components/sections/CtaBand'
 import NotFoundPage from '../NotFound/NotFoundPage'
 import './ServiceDetailPage.css'
+
+function Block({ id, title, children, className = '' }) {
+  return (
+    <section className={`block ${className}`.trim()} aria-labelledby={id}>
+      <h2 id={id} className="block__title display">
+        {title}
+      </h2>
+      <div className="block__body">{children}</div>
+    </section>
+  )
+}
 
 export default function ServiceDetailPage() {
   const { slug } = useParams()
@@ -21,128 +33,125 @@ export default function ServiceDetailPage() {
   const next = services[(index + 1) % services.length]
 
   return (
-    <div style={{ '--run': `var(--cable-${s.cable})` }}>
+    <>
       <PageHeader
-        crumbs={[{ label: 'Services', to: '/services' }, { label: s.shortName }]}
-        title={s.hero.title}
+        crumbs={[{ label: 'Services', to: '/services' }, { label: s.name }]}
+        title={s.name}
+        tagline={s.hero.title}
         lead={s.hero.lead}
-        cable={s.cable}
-        aside={<Figure image={s.image} priority ratio="4 / 3" sizes="(min-width: 60em) 40vw, 100vw" />}
       >
-        <Button to={`/contact?service=${s.slug}`}>Get a free IT consultation</Button>
-        <Button href={company.phone.href} variant="ghost" arrow={false}>
-          Call {company.phone.display}
+        <Button to={cta.primary.to}>{cta.primary.label}</Button>
+        <Button to={`${cta.secondary.to}?service=${s.slug}`} variant="secondary">
+          {cta.secondary.label}
         </Button>
       </PageHeader>
 
-      <div className="container">
-        <div className="route">
-          <section className="route__stop" aria-labelledby="problem-title">
-            <h2 id="problem-title" className="route__title">
-              {s.problem.title}
-            </h2>
-            <div className="route__two">
-              <div className="prose">
-                {s.problem.body.map((p) => (
-                  <p key={p.slice(0, 24)}>{p}</p>
-                ))}
-              </div>
-              <div className="signs">
-                <h3 className="signs__title">Signs you might recognise</h3>
-                <ul className="signs__list">
-                  {s.problem.signs.map((sign) => (
-                    <li key={sign}>{sign}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className="route__stop" aria-labelledby="solution-title">
-            <h2 id="solution-title" className="route__title">
-              {s.solution.title}
-            </h2>
-            <div className="prose route__prose">
-              {s.solution.body.map((p) => (
+      <div className="container service">
+        <Block id="problem-title" title={s.problem.title}>
+          <div className="block__two">
+            <div className="prose">
+              {s.problem.body.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
             </div>
-          </section>
-
-          <section className="route__stop" aria-labelledby="included-title">
-            <h2 id="included-title" className="route__title">
-              What’s included
-            </h2>
-            <ul className="included">
-              {s.included.map((item) => (
-                <li key={item.title} className="included__item">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="route__stop" aria-labelledby="needs-title">
-            <h2 id="needs-title" className="route__title">
-              Typical situations we help with
-            </h2>
-            <ul className="needs">
-              {s.needs.map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="route__stop" aria-labelledby="benefits-title">
-            <h2 id="benefits-title" className="route__title">
-              What changes for your business
-            </h2>
-            <p className="outcome">{s.overview.outcome}</p>
-            <dl className="benefits">
-              {s.benefits.map((b) => (
-                <div key={b.title} className="benefits__item">
-                  <dt>{b.title}</dt>
-                  <dd>{b.text}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-
-          <section className="route__stop" aria-labelledby="approach-title">
-            <h2 id="approach-title" className="route__title">
-              How we deliver it
-            </h2>
-            <CableRun steps={s.approach} cable={s.cable} className="route__run" />
-          </section>
-
-          <section className="route__stop route__stop--last" aria-labelledby="faq-title">
-            <h2 id="faq-title" className="route__title">
-              Common questions
-            </h2>
-            <div className="route__faq">
-              <FaqList items={s.faqs} />
+            <div className="signs card" data-reveal>
+              <h3 className="signs__title">Signs you might recognise</h3>
+              <ul className="ticks">
+                {s.problem.signs.map((sign) => (
+                  <li key={sign}>{sign}</li>
+                ))}
+              </ul>
             </div>
-          </section>
-        </div>
+          </div>
+        </Block>
+
+        <Block id="solution-title" title={s.solution.title}>
+          <div className="prose">
+            {s.solution.body.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
+          </div>
+        </Block>
+
+        <Block id="included-title" title="What’s included">
+          <ul className="included">
+            {s.included.map((item, i) => (
+              <li key={item.title} className="included__item" data-reveal style={{ '--i': i % 3 }}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </Block>
+
+        <Block id="receive-title" title="What you receive">
+          <ul className="receive">
+            {s.deliverables.map((d, i) => (
+              <li key={d} className="receive__item card" data-reveal style={{ '--i': i }}>
+                <span className="receive__icon" aria-hidden="true">
+                  <Check width={18} height={18} />
+                </span>
+                {d}
+              </li>
+            ))}
+          </ul>
+        </Block>
+
+        <TechStrip service={s.slug} className="block" />
+
+        {s.example && (
+          <Block id="example-title" title="Example engagement">
+            <ExampleCards id={s.example} showService={false} />
+          </Block>
+        )}
+
+        <Block id="needs-title" title="Typical situations we help with">
+          <ul className="needs">
+            {s.needs.map((n, i) => (
+              <li key={n} data-reveal style={{ '--i': i }}>
+                {n}
+              </li>
+            ))}
+          </ul>
+        </Block>
+
+        <Block id="benefits-title" title="What changes for your business">
+          <p className="outcome">{s.overview.outcome}</p>
+          <dl className="benefits">
+            {s.benefits.map((b, i) => (
+              <div key={b.title} className="benefits__item" data-reveal style={{ '--i': i }}>
+                <dt>{b.title}</dt>
+                <dd>{b.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </Block>
+
+        <Block id="approach-title" title="How we deliver it">
+          <ProcessSteps steps={s.approach} />
+        </Block>
+
+        <Block id="faq-title" title="Common questions" className="block--last">
+          <FaqList items={s.faqs} />
+        </Block>
       </div>
 
-      <nav className="related sheet" aria-labelledby="related-title">
+      <nav className="related section--surface" aria-labelledby="related-title">
         <div className="container related__inner">
-          <div>
+          <div className="related__head">
             <h2 id="related-title" className="related__title">
               Other services
             </h2>
-            <Link to={`/services/${next.slug}`} className="link-arrow related__next">
+            <Link to={`/services/${next.slug}`} className="link-arrow">
               Next: {next.name} <ArrowRight width={18} height={18} />
             </Link>
           </div>
           <ul className="related__list">
             {others.map((o) => (
               <li key={o.slug}>
-                <Link to={`/services/${o.slug}`}>
-                  <Jack cable={o.cable} size={14} />
-                  {o.shortName}
+                <Link to={`/services/${o.slug}`} className="chip">
+                  <ServiceIcon name={o.icon} size={18} />
+                  {o.name}
                 </Link>
               </li>
             ))}
@@ -150,10 +159,7 @@ export default function ServiceDetailPage() {
         </div>
       </nav>
 
-      <CtaBand
-        title="Let’s look at your setup."
-        text={s.ctaText}
-      />
-    </div>
+      <CtaBand title="Let’s look at your setup." text={s.ctaText} service={s.slug} />
+    </>
   )
 }

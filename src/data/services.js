@@ -1,31 +1,18 @@
-// The six service lines. Every page that mentions a service reads from here,
+// The six services. Every page that mentions a service reads from here,
 // so wording changes happen in one place.
 //
-// `port` and `cable` belong to the site's patch-panel language: each service
-// has a fixed port number and cable colour that recur wherever it appears.
-
-import itSupportImg from '../assets/images/service-it-support-1600.webp'
-import itSupportImgSm from '../assets/images/service-it-support-800.webp'
-import cloudImg from '../assets/images/service-cloud-1600.webp'
-import cloudImgSm from '../assets/images/service-cloud-800.webp'
-import securityImg from '../assets/images/service-security-1600.webp'
-import securityImgSm from '../assets/images/service-security-800.webp'
-import networkImg from '../assets/images/service-network-1600.webp'
-import networkImgSm from '../assets/images/service-network-800.webp'
-import hostingImg from '../assets/images/service-hosting-1600.webp'
-import hostingImgSm from '../assets/images/service-hosting-800.webp'
-import consultingImg from '../assets/images/service-consulting-1600.webp'
-import consultingImgSm from '../assets/images/service-consulting-800.webp'
+// `number` is the service's fixed label ("Service 01"). `practice` groups the
+// six services into the five practice areas used by the menu and homepage.
 
 export const services = [
   {
     slug: 'it-support',
     ctaText: 'Tell us where IT is costing your team time. We’ll suggest practical next steps, with no obligation.',
-    port: '01',
-    cable: 'teal',
-    name: 'IT Support & Managed Services',
-    shortName: 'IT Support',
-    label: 'IT SUPPORT',
+    number: '01',
+    practice: 'managed-it',
+    icon: 'support',
+    name: 'Managed IT & Support',
+    shortName: 'Managed IT & Support',
     readout:
       'Day-to-day help for your people and devices, remote or onsite, plus the upkeep that stops problems coming back.',
     overview: {
@@ -37,11 +24,19 @@ export const services = [
       outcome: 'Fewer interruptions, faster fixes and one place to call.',
     },
     seo: {
-      title: 'IT Support & Managed IT Services',
+      title: 'Managed IT & Support Services | exQ Services',
       description:
-        'Remote and onsite IT support for businesses across India: helpdesk, device setup, troubleshooting and preventive maintenance from exQ Services, Chennai.',
+        'Helpdesk, remote and onsite support, device management and preventive maintenance, with one team that knows your environment.',
     },
-    image: { src: itSupportImg, srcSm: itSupportImgSm, width: 1600, height: 1067, alt: 'Technician opening a laptop on a workbench to replace an internal component', caption: 'Hardware diagnosis and repair' },
+    // "What you receive" (Task 12)
+    deliverables: [
+      'User and device register',
+      'Agreed support channel and response expectations in writing',
+      'Record of every fix',
+      'Monthly service summary',
+    ],
+    // Matching example engagement (Task 14), where one exists
+    example: null,
     hero: {
       title: 'IT support your team can actually reach',
       lead: 'Remote and onsite support for your people, devices and systems, with the routine maintenance that keeps small problems from turning into lost days.',
@@ -105,11 +100,11 @@ export const services = [
   {
     slug: 'cloud-saas',
     ctaText: 'Tell us how your email, files and cloud accounts are set up today. We’ll suggest practical next steps, with no obligation.',
-    port: '02',
-    cable: 'yellow',
-    name: 'Cloud & SaaS Solutions',
-    shortName: 'Cloud & SaaS',
-    label: 'CLOUD & SAAS',
+    number: '02',
+    practice: 'cloud',
+    icon: 'cloud',
+    name: 'Cloud & Digital Workplace',
+    shortName: 'Cloud & Digital Workplace',
     readout:
       'Business email, cloud storage and collaboration tools set up properly and kept tidy as your team changes.',
     overview: {
@@ -121,11 +116,19 @@ export const services = [
       outcome: 'Cloud tools that are simpler to manage, less wasteful and safer to use.',
     },
     seo: {
-      title: 'Cloud & SaaS Solutions',
+      title: 'Cloud & Digital Workplace | Microsoft 365 & Google Workspace | exQ',
       description:
-        'Cloud setup, email migration, business email, cloud storage and SaaS administration for growing businesses, planned and supported by exQ Services.',
+        'Set-up, migration and administration of business email, storage and collaboration platforms, with licences and access kept in order.',
     },
-    image: { src: cloudImg, srcSm: cloudImgSm, width: 1200, height: 1600, alt: 'Two colleagues reviewing work together on a laptop at an outdoor table', caption: 'Shared files and tools, wherever the team sits' },
+    // "What you receive" (Task 12)
+    deliverables: [
+      'Tenant configuration record',
+      'User and licence register',
+      'Migration plan with sign-off',
+      'Admin handover',
+    ],
+    // Matching example engagement (Task 14), where one exists
+    example: 'microsoft-365',
     hero: {
       title: 'Cloud tools, set up properly and kept in order',
       lead: 'Business email, file storage and collaboration platforms planned, migrated and administered, so your team gets the benefit of the cloud without the sprawl.',
@@ -189,11 +192,11 @@ export const services = [
   {
     slug: 'cybersecurity',
     ctaText: 'Tell us what worries you about your security. We’ll help you work out what matters most, with no obligation.',
-    port: '03',
-    cable: 'red',
+    number: '03',
+    practice: 'security',
+    icon: 'shield',
     name: 'Cybersecurity',
     shortName: 'Cybersecurity',
-    label: 'SECURITY',
     readout:
       'Practical protection for your users, devices, accounts and network, starting with the risks most likely to hurt you.',
     overview: {
@@ -205,11 +208,19 @@ export const services = [
       outcome: 'Fewer avoidable risks, and a clear plan if something does go wrong.',
     },
     seo: {
-      title: 'Cybersecurity & IT Protection',
+      title: 'Cybersecurity Services | Assessment, Protection & Recovery | exQ',
       description:
-        'Practical cybersecurity for businesses: security assessments, endpoint and account protection, network security, backup and recovery, and staff awareness.',
+        'Security assessments, identity and endpoint protection, network security, backup and recovery, and staff awareness.',
     },
-    image: { src: securityImg, srcSm: securityImgSm, width: 1600, height: 900, alt: 'Person approving a passkey sign-in on a smartphone beside a laptop keyboard', caption: 'Multi-factor sign-in on company accounts' },
+    // "What you receive" (Task 12)
+    deliverables: [
+      'Written assessment with prioritised risks',
+      'Remediation record',
+      'Backup restore test report',
+      'Access review',
+    ],
+    // Matching example engagement (Task 14), where one exists
+    example: 'security-baseline',
     hero: {
       title: 'Security that fits the way your business works',
       lead: 'Practical protection for your people, devices, accounts and network. We start with the risks most likely to cause real damage and deal with those first.',
@@ -274,11 +285,11 @@ export const services = [
   {
     slug: 'network-infrastructure',
     ctaText: 'Tell us about your office, or the one you’re moving into. We’ll suggest practical next steps, with no obligation.',
-    port: '04',
-    cable: 'blue',
+    number: '04',
+    practice: 'network',
+    icon: 'network',
     name: 'Network & Infrastructure',
     shortName: 'Network & Infrastructure',
-    label: 'NETWORK',
     readout:
       'Wired and wireless networks, cabling, firewalls and office hardware, planned and installed to work reliably.',
     overview: {
@@ -290,11 +301,19 @@ export const services = [
       outcome: 'Connectivity your team can depend on, and a setup someone can actually understand.',
     },
     seo: {
-      title: 'Network & Infrastructure Services',
+      title: 'Network & Infrastructure Services | exQ Services',
       description:
-        'Office network design, structured cabling, Wi-Fi, switches, firewalls and CCTV support. Network infrastructure planned, installed and documented by exQ Services.',
+        'Design, installation and support of office networks: cabling, switching, Wi-Fi, firewalls, CCTV and power protection.',
     },
-    image: { src: networkImg, srcSm: networkImgSm, width: 1200, height: 1600, alt: 'Network engineer patching cables into a wall-mounted rack', caption: 'Patching and cable management in an office rack' },
+    // "What you receive" (Task 12)
+    deliverables: [
+      'Network diagram',
+      'Labelled cabling schedule',
+      'IP and VLAN plan',
+      'Device configuration backups',
+    ],
+    // Matching example engagement (Task 14), where one exists
+    example: 'office-network',
     hero: {
       title: 'A network your office can depend on',
       lead: 'Office networks planned, cabled, installed and supported, from the patch panel and switches to Wi-Fi, firewalls and every device that connects to them.',
@@ -359,11 +378,11 @@ export const services = [
   {
     slug: 'website-hosting',
     ctaText: 'Tell us where your domain, website and email live today, if you know. We’ll help you untangle it.',
-    port: '05',
-    cable: 'green',
-    name: 'Website & Hosting Solutions',
-    shortName: 'Website & Hosting',
-    label: 'HOSTING',
+    number: '05',
+    practice: 'consulting',
+    icon: 'globe',
+    name: 'Web Infrastructure',
+    shortName: 'Web Infrastructure',
     readout:
       'Domains, hosting, DNS, SSL and website upkeep handled, so your site stays online, secure and renewed on time.',
     overview: {
@@ -375,11 +394,18 @@ export const services = [
       outcome: 'A website that stays up, loads securely and renews on time.',
     },
     seo: {
-      title: 'Website & Hosting Solutions',
+      title: 'Web Infrastructure | Domains, DNS, Hosting & SSL | exQ',
       description:
-        'Domain management, DNS, web hosting, SSL certificates, website deployment and maintenance. The technical side of your website, managed by exQ Services.',
+        'Domains, DNS, hosting, SSL and website upkeep managed by one team, so your site and email stay online and secure.',
     },
-    image: { src: hostingImg, srcSm: hostingImgSm, width: 1600, height: 1067, alt: 'Long corridor of server racks behind glass doors in a data centre', caption: 'Hosting infrastructure in a data centre' },
+    // "What you receive" (Task 12)
+    deliverables: [
+      'Register of domains, DNS, hosting and SSL with renewal dates',
+      'All logins handed to the owner',
+      'Renewal reminders',
+    ],
+    // Matching example engagement (Task 14), where one exists
+    example: null,
     hero: {
       title: 'The technical side of your website, looked after',
       lead: 'Domains, DNS, hosting, SSL and site maintenance managed by one team, so your website and the email that depends on it stay online.',
@@ -442,11 +468,11 @@ export const services = [
   {
     slug: 'it-consulting',
     ctaText: 'Tell us about the decision or project in front of you. We’ll help you think it through, with no obligation.',
-    port: '06',
-    cable: 'grey',
-    name: 'IT Consulting & Special Projects',
-    shortName: 'IT Consulting',
-    label: 'CONSULTING',
+    number: '06',
+    practice: 'consulting',
+    icon: 'compass',
+    name: 'IT Consulting & Projects',
+    shortName: 'IT Consulting & Projects',
     readout:
       'Clear advice, assessments and project help for the technology decisions that are expensive to get wrong.',
     overview: {
@@ -458,11 +484,19 @@ export const services = [
       outcome: 'Better technology decisions, made with a plan rather than a sales pitch.',
     },
     seo: {
-      title: 'IT Consulting & Special Projects',
+      title: 'IT Consulting & Projects | Strategy, Assessment & Roadmaps | exQ',
       description:
-        'IT assessments, technology planning, vendor selection, documentation, audit preparation and special projects for businesses, from exQ Services in Chennai.',
+        'Independent IT assessments, roadmaps, vendor selection and project delivery for technology decisions that are costly to get wrong.',
     },
-    image: { src: consultingImg, srcSm: consultingImgSm, width: 1600, height: 1067, alt: 'Two colleagues discussing a plan sketched on a whiteboard', caption: 'Planning before purchasing' },
+    // "What you receive" (Task 12)
+    deliverables: [
+      'Current-state assessment',
+      '12-month technology roadmap',
+      'Vendor comparison',
+      'Project plan',
+    ],
+    // Matching example engagement (Task 14), where one exists
+    example: null,
     hero: {
       title: 'Technology decisions, made with a plan',
       lead: 'Assessments, planning, vendor selection and project delivery for businesses that want clear advice before they spend.',
@@ -526,3 +560,13 @@ export const services = [
 ]
 
 export const getService = (slug) => services.find((s) => s.slug === slug)
+
+// The five practice areas (Task 10). Each lists its services in menu order;
+// Web Infrastructure sits as the second link under IT Consulting & Projects.
+export const practiceAreas = [
+  { id: 'managed-it', label: 'Managed IT & Support', services: ['it-support'] },
+  { id: 'cloud', label: 'Cloud & Digital Workplace', services: ['cloud-saas'] },
+  { id: 'security', label: 'Cybersecurity', services: ['cybersecurity'] },
+  { id: 'network', label: 'Network & Infrastructure', services: ['network-infrastructure'] },
+  { id: 'consulting', label: 'IT Consulting & Projects', services: ['it-consulting', 'website-hosting'] },
+].map((area) => ({ ...area, services: area.services.map(getService) }))

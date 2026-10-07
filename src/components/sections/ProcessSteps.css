@@ -1,0 +1,109 @@
+.steps {
+  list-style: none;
+  display: grid;
+  gap: 0;
+}
+
+.steps__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  align-content: start;
+  column-gap: var(--s-4);
+  padding-bottom: var(--s-6);
+}
+
+/* Vertical connector on small screens */
+.steps__item::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 3rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.steps__item:last-child {
+  padding-bottom: 0;
+}
+
+.steps__item:last-child::before {
+  display: none;
+}
+
+.steps__num {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--card);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+
+.steps__item:hover .steps__num {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.steps__title {
+  font-size: 1.125rem;
+  align-self: end;
+}
+
+.steps__text {
+  color: var(--text-muted);
+}
+
+/* Horizontal line of steps on wide screens */
+@media (min-width: 64em) {
+  .steps {
+    grid-template-columns: repeat(var(--steps), minmax(0, 1fr));
+    gap: var(--s-4);
+  }
+
+  .steps__item {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-3);
+    padding-bottom: 0;
+  }
+
+  .steps__item::before {
+    left: 3.5rem;
+    right: calc(-1 * var(--s-4));
+    top: 1.5rem;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    transform-origin: left;
+  }
+
+  /* The connector draws towards the next step as each one appears. */
+  .js .steps__item[data-reveal]::before {
+    transform: scaleX(0);
+  }
+
+  .js .steps__item.is-visible::before {
+    transform: none;
+    transition: transform var(--dur-slow) var(--ease-out);
+    transition-delay: calc(min(var(--i, 0), 6) * 50ms + 120ms);
+  }
+
+  .steps__num {
+    grid-row: auto;
+  }
+
+  .steps__title {
+    align-self: start;
+  }
+}
